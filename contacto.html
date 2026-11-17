@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Contacto | Evimes · Pide tu propuesta</title>
+  <meta name="description" content="Cuéntanos qué necesitas y te respondemos con una propuesta clara. Estudio de diseño web a medida en Madrid.">
+  <link rel="canonical" href="https://evimesweb.com/contacto.html">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#080b14">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Evimes">
+  <meta property="og:url" content="https://evimesweb.com/contacto.html">
+  <meta property="og:title" content="Contacto | Evimes · Pide tu propuesta">
+  <meta property="og:description" content="Cuéntanos qué necesitas y te respondemos con una propuesta clara. Estudio de diseño web a medida en Madrid.">
+  <meta property="og:image" content="https://evimesweb.com/assets/onda/onda-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bandas de cromo con la forma de la línea del monograma de Evimes sobre fondo navy.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contacto | Evimes · Pide tu propuesta">
+  <meta name="twitter:description" content="Cuéntanos qué necesitas y te respondemos con una propuesta clara. Estudio de diseño web a medida en Madrid.">
+  <meta name="twitter:image" content="https://evimesweb.com/assets/onda/onda-og.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ContactPage",
+        "@id": "https://evimesweb.com/contacto.html#pagina",
+        "url": "https://evimesweb.com/contacto.html",
+        "name": "Contacto | Evimes · Pide tu propuesta",
+        "inLanguage": "es",
+        "about": {
+          "@id": "https://evimesweb.com/#estudio"
+        }
+      }
+    ]
+  }
+  </script>
+  <!-- Modo de la página (como la home): cine (Lenis + Three) o fijo (movimiento reducido, ahorro de datos). ?modo=fijo | ?modo=cine -->
+  <script>
+    (function () {
+      var EV = (window.EV = window.EV || {}), q = new URLSearchParams(location.search).get('modo');
+      var rm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+      var c = navigator.connection || {}, lenta = c.saveData || /(^|-)(2g|3g)$/.test(c.effectiveType || '');
+      EV.reducedMotion = rm;
+      EV.mode = q === 'fijo' ? 'still' : q === 'cine' ? 'cine' : (rm || lenta) ? 'still' : 'cine';
+      document.documentElement.classList.add(EV.mode === 'cine' ? 'is-cine' : 'is-still');
+      if (window.matchMedia) matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', function () { if (!q) location.reload(); });
+    })();
+  </script>
+  <link rel="preload" as="image" type="image/webp" href="assets/onda/onda-movil.webp" media="(max-width: 719px)">
+  <link rel="preload" as="image" type="image/webp" href="assets/onda/onda-escritorio.webp" media="(min-width: 720px)">
+  <link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/fondo.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/contacto.css">
+  <link rel="stylesheet" href="css/paginas-evimes.css">
+</head>
+<body class="inicio pag pag--contacto" data-fondo-op="0.5">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- ===== Fondo global (el mismo de la home): rayos (2D) + la onda de cromo (Three.js) + grano ===== -->
+  <div class="fondo" aria-hidden="true">
+    <canvas class="fondo__rayos"></canvas>
+    <picture class="fondo__fija">
+      <source media="(max-width: 719px)" type="image/webp" srcset="assets/onda/onda-movil.webp">
+      <img src="assets/onda/onda-escritorio.webp" alt="" width="1920" height="1080" decoding="async" fetchpriority="high">
+    </picture>
+    <canvas class="fondo__onda"></canvas>
+  </div>
+  <div class="grano" aria-hidden="true"></div>
+
+  <!-- ===== Cabecera flotante de cristal (la misma en todas las páginas) ===== -->
+  <header class="cabecera">
+    <a class="cabecera__marca" href="index.html" aria-label="Evimes, inicio" data-logo="wordmark"></a>
+    <nav class="cabecera__nav" id="cabecera-nav" aria-label="Principal">
+      <ul>
+        <li><a href="servicios.html" data-scramble><span class="sl">Servicios</span></a></li>
+        <li><a href="proyectos.html" data-scramble><span class="sl">Proyectos</span></a></li>
+        <li><a href="planes.html" data-scramble><span class="sl">Planes</span></a></li>
+        <li><a href="contacto.html" data-scramble aria-current="page"><span class="sl">Contacto</span></a></li>
+      </ul>
+    </nav>
+    <a class="pastilla cabecera__cta" href="contacto.html" data-scramble><span class="sl">Pide tu propuesta</span></a>
+    <button class="cabecera__abrir" type="button" aria-expanded="false" aria-controls="cabecera-nav">
+      <span class="sr-only">Menú</span>
+      <span class="cabecera__lineas" aria-hidden="true"><span></span><span></span></span>
+    </button>
+  </header>
+
+  <main id="contenido">
+    <!-- BORRADOR: textos en js/data/contacto-pagina.js -->
+    <!-- 1 · Cabecera -->
+    <section class="pag-hero pag-hero--contacto" aria-labelledby="h1">
+      <h1 class="display pag-hero__titulo" id="h1" data-ct="hero.titulo" data-lineas>¿Hacemos que se te vea?</h1>
+      <p class="pag-hero__texto" data-ct="hero.texto">Cuéntanos qué necesitas. Te respondemos con una propuesta clara.</p>
+    </section>
+
+    <!-- 2 · Formulario (el de la home: Web3Forms, clave en js/config.js) + contacto directo -->
+    <section class="contacto contacto--pagina" id="formulario" aria-label="Formulario de contacto">
+      <div class="contacto__form" data-form-caja>
+        <form class="form" data-form data-form-ir="formulario" novalidate aria-describedby="form-nota">
+          <!-- trampa para bots (Web3Forms): oculta para personas y lectores de pantalla -->
+          <input class="form__hp" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="campo">
+            <input class="campo__input" id="f-nombre" name="nombre" type="text" autocomplete="name" required placeholder=" " aria-describedby="f-nombre-err">
+            <label class="campo__label" for="f-nombre">Nombre <span aria-hidden="true">*</span></label>
+            <span class="campo__linea" aria-hidden="true"></span>
+            <p class="campo__error" id="f-nombre-err"></p>
+          </div>
+          <div class="campo">
+            <input class="campo__input" id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required placeholder=" " aria-describedby="f-email-err">
+            <label class="campo__label" for="f-email">Email <span aria-hidden="true">*</span></label>
+            <span class="campo__linea" aria-hidden="true"></span>
+            <p class="campo__error" id="f-email-err"></p>
+          </div>
+          <div class="campo">
+            <input class="campo__input" id="f-telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" placeholder=" " aria-describedby="f-telefono-err">
+            <label class="campo__label" for="f-telefono">Teléfono <span class="campo__opc">(opcional)</span></label>
+            <span class="campo__linea" aria-hidden="true"></span>
+            <p class="campo__error" id="f-telefono-err"></p>
+          </div>
+
+          <fieldset class="grupo">
+            <legend class="grupo__legend">Soy…</legend>
+            <div class="grupo__chips">
+              <label class="chip"><input type="radio" name="perfil" value="Agencia creativa"><span>Agencia creativa</span></label>
+              <label class="chip"><input type="radio" name="perfil" value="Negocio local"><span>Negocio local</span></label>
+              <label class="chip"><input type="radio" name="perfil" value="Otro"><span>Otro</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="grupo">
+            <legend class="grupo__legend">Plan que te interesa</legend>
+            <div class="grupo__chips">
+              <label class="chip"><input type="radio" name="plan" value="fundamento"><span>Fundamento</span></label>
+              <label class="chip"><input type="radio" name="plan" value="inmersion"><span>Inmersión</span></label>
+              <label class="chip"><input type="radio" name="plan" value="impacto"><span>Impacto</span></label>
+              <label class="chip"><input type="radio" name="plan" value="aun-no"><span>Aún no lo sé</span></label>
+            </div>
+          </fieldset>
+
+          <div class="campo campo--area">
+            <textarea class="campo__input" id="f-mensaje" name="mensaje" rows="4" required placeholder=" " aria-describedby="f-mensaje-err"></textarea>
+            <label class="campo__label" for="f-mensaje">Mensaje <span aria-hidden="true">*</span></label>
+            <span class="campo__linea" aria-hidden="true"></span>
+            <p class="campo__error" id="f-mensaje-err"></p>
+          </div>
+
+          <div class="casilla">
+            <input id="f-privacidad" name="privacidad" type="checkbox" required aria-describedby="f-privacidad-err">
+            <label for="f-privacidad">He leído y acepto la <a href="privacidad.html">política de privacidad</a>. <span aria-hidden="true">*</span></label>
+            <p class="campo__error" id="f-privacidad-err"></p>
+          </div>
+
+          <div class="form__pie">
+            <button class="pastilla pastilla--grande form__enviar" type="submit" data-scramble><span class="sl">Enviar</span></button>
+            <p class="form__nota" id="form-nota">Los campos con * son obligatorios.</p>
+          </div>
+          <div class="form__estado" data-form-estado role="status" aria-live="polite"></div>
+        </form>
+      </div>
+
+      <aside class="contacto__lado" aria-labelledby="h-lado">
+        <h2 class="display contacto__lado-t" id="h-lado" data-ct="lado.titulo">Te respondemos personalmente, sin bots.</h2>
+        <!-- WhatsApp y email salen de js/config.js; vacíos, no se muestran -->
+        <div class="contacto__directo" data-directo hidden>
+          <a data-whatsapp href="#" target="_blank" rel="noopener" hidden><span>WhatsApp</span><span aria-hidden="true">→</span></a>
+          <a data-email href="#" hidden><span data-valor>Email</span><span aria-hidden="true">→</span></a>
+        </div>
+        <p class="contacto__lugar" data-ct="lado.lugar">Madrid</p>
+      </aside>
+    </section>
+
+    <!-- 3 · Qué pasa después (gris). "Llamada de 20 minutos": BORRADOR -->
+    <section class="despues despues--gris" id="despues" aria-labelledby="h-despues" data-cubre>
+      <h2 class="display despues__titulo" id="h-despues" data-ct="despues.titulo" data-lineas>Qué pasa después</h2>
+      <ol class="despues__lista" data-escalona>
+        <li><span class="despues__n">01</span><h3 class="display" data-ct="despues.pasos.0.titulo">Te escribimos</h3><p data-ct="despues.pasos.0.texto">Leemos tu mensaje y te contestamos nosotros, por email o por WhatsApp.</p></li>
+        <li><span class="despues__n">02</span><h3 class="display" data-ct="despues.pasos.1.titulo">Llamada de 20 minutos</h3><p data-ct="despues.pasos.1.texto">Hablamos de tu negocio, de lo que necesitas y de cómo lo haríamos.</p></li>
+        <li><span class="despues__n">03</span><h3 class="display" data-ct="despues.pasos.2.titulo">Propuesta clara</h3><p data-ct="despues.pasos.2.texto">Te enviamos qué haremos, en qué plazos y cuánto cuesta. Por escrito y sin letra pequeña.</p></li>
+      </ol>
+    </section>
+  </main>
+
+  <!-- ===== Pie ===== -->
+  <footer class="pie">
+    <p>© 2026 Evimes · Madrid</p>
+    <nav aria-label="Textos legales">
+      <ul class="pie__legales">
+        <li><a href="aviso-legal.html">Aviso legal</a></li>
+        <li><a href="terminos.html">Términos</a></li>
+        <li><a href="privacidad.html">Privacidad</a></li>
+        <li><a href="cookies.html">Cookies</a></li>
+      </ul>
+    </nav>
+  </footer>
+
+  <!-- Librerías (diferidas). Three.js 0.160.0 lo importa js/fondo/onda.js al primer gesto. -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script defer src="js/config.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/engine/util.js"></script>
+  <script defer src="js/fondo/rayos.js"></script>
+  <script defer src="js/fondo/onda.js"></script>
+  <script defer src="js/fondo/fondo.js"></script>
+  <script defer src="js/data/contacto-pagina.js"></script>
+  <script defer src="js/contacto/form.js"></script>
+  <script defer src="js/paginas/paginas.js"></script>
+  <script type="module" src="js/ui/scramble.js"></script>
+</body>
+</html>

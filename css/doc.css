@@ -1,0 +1,136 @@
+/* ==========================================================================
+   Páginas de lectura (legales). Modo Read: medida cómoda, jerarquía clara,
+   el mismo mundo (navy, piedra, Baskerville, grano) sin el aparato del cine.
+   ========================================================================== */
+
+.doc-page { --ink-doc: rgb(233 227 216 / 0.84); }
+
+.doc {
+  display: grid;
+  grid-template-columns: minmax(var(--gutter), 1fr) min(41rem, calc(100% - 2 * var(--gutter))) minmax(var(--gutter), 2.2fr);
+  padding-top: calc(var(--header-h) + clamp(3rem, 8vw, 7.5rem));
+  padding-bottom: var(--space-8);
+}
+.doc > * { grid-column: 2; }
+
+@media (max-width: 63.99rem) {
+  .doc { grid-template-columns: var(--gutter) minmax(0, 1fr) var(--gutter); }
+}
+
+.doc__head { margin-bottom: clamp(2.5rem, 6vw, 5rem); }
+.doc__title {
+  font-size: var(--step-4);
+  max-width: 14ch;
+}
+.doc__updated {
+  margin-top: var(--space-5);
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.doc__section {
+  border-top: 1px solid var(--line);
+  padding-top: var(--space-6);
+  margin-top: var(--space-7);
+}
+.doc__section:first-child { margin-top: 0; }
+
+.doc h2 {
+  font-size: var(--step-2);
+  line-height: 1.2;
+  margin-bottom: var(--space-5);
+  max-width: 28ch;
+}
+.doc__num {
+  font-family: var(--font-text);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+  margin-right: 0.6em;
+  vertical-align: 0.28em;
+}
+
+.doc p, .doc li {
+  color: var(--ink-doc);
+  max-width: 68ch;
+  hyphens: auto;
+}
+.doc p + p, .doc p + ul, .doc ul + p, .doc .doc__table + p, .doc p + .doc__table { margin-top: var(--space-4); }
+.doc strong { color: var(--stone); font-weight: 600; }
+
+.doc ul { list-style: none; margin: var(--space-4) 0 0; padding: 0; }
+.doc li { position: relative; padding-left: 1.5em; }
+.doc li + li { margin-top: var(--space-2); }
+.doc li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.78em;
+  width: 0.7em;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+.doc a {
+  color: var(--stone);
+  text-decoration-line: underline;
+  text-decoration-color: var(--line-strong);
+  overflow-wrap: anywhere;
+}
+.doc a:hover { text-decoration-color: var(--stone); }
+
+/* Tabla de cookies */
+.doc__table {
+  margin-top: var(--space-5);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.doc table {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  font-size: var(--step--1);
+  line-height: 1.45;
+}
+.doc th {
+  text-align: left;
+  font-weight: 500;
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding: 0 var(--space-4) var(--space-3) 0;
+  border-bottom: 1px solid var(--line-strong);
+}
+.doc td {
+  color: var(--ink-doc);
+  padding: var(--space-3) var(--space-4) var(--space-3) 0;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+/* Cabecera en páginas de lectura */
+.doc-back { color: var(--ink-muted); text-decoration: none; }
+.doc-back:hover { color: var(--stone); }
+@media (max-width: 47.99rem) { .doc-back { display: none; } }
+
+/* Pie */
+.doc-footer {
+  border-top: 1px solid var(--line);
+  padding: var(--space-6) var(--gutter) var(--space-7);
+}
+.doc-footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+  font-size: var(--step--1);
+}
+.doc-footer a { color: var(--ink-muted); text-decoration: none; display: inline-block; padding-block: var(--space-2); }
+.doc-footer a:hover { color: var(--stone); }
+.doc-footer a[aria-current="page"] { color: var(--stone); text-decoration: underline; text-decoration-color: var(--line-strong); }

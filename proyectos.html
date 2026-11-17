@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Proyectos | Evimes · Webs que dan que hablar</title>
+  <meta name="description" content="Webs a medida hechas en Madrid: Disco Producción, con su PageSpeed medido, y Amad Peña Barbershop. Cada una diseñada y programada a mano.">
+  <link rel="canonical" href="https://evimesweb.com/proyectos.html">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#080b14">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Evimes">
+  <meta property="og:url" content="https://evimesweb.com/proyectos.html">
+  <meta property="og:title" content="Proyectos | Evimes · Webs que dan que hablar">
+  <meta property="og:description" content="Webs a medida hechas en Madrid: Disco Producción, con su PageSpeed medido, y Amad Peña Barbershop. Cada una diseñada y programada a mano.">
+  <meta property="og:image" content="https://evimesweb.com/assets/onda/onda-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bandas de cromo con la forma de la línea del monograma de Evimes sobre fondo navy.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Proyectos | Evimes · Webs que dan que hablar">
+  <meta name="twitter:description" content="Webs a medida hechas en Madrid: Disco Producción, con su PageSpeed medido, y Amad Peña Barbershop. Cada una diseñada y programada a mano.">
+  <meta name="twitter:image" content="https://evimesweb.com/assets/onda/onda-og.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://evimesweb.com/proyectos.html#pagina",
+        "url": "https://evimesweb.com/proyectos.html",
+        "name": "Proyectos | Evimes · Webs que dan que hablar",
+        "inLanguage": "es",
+        "about": {
+          "@id": "https://evimesweb.com/#estudio"
+        },
+        "mainEntity": {
+          "@type": "ItemList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "CreativeWork",
+                "@id": "https://evimesweb.com/proyectos.html#disco",
+                "name": "Web de Disco Producción",
+                "url": "https://discoproduccion.com",
+                "description": "Una web tan creativa como lo que producen, que transmita ritmo y energía.",
+                "creator": {
+                  "@id": "https://evimesweb.com/#estudio"
+                },
+                "about": "Disco, productora audiovisual de foto, vídeo y edición en Madrid."
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "CreativeWork",
+                "@id": "https://evimesweb.com/proyectos.html#amad",
+                "name": "Web de Amad Peña Barbershop",
+                "url": "https://patosarmientooscar.github.io/Pelqueria-A-M/",
+                "description": "Web con servicios, galería de cortes y reservas.",
+                "creator": {
+                  "@id": "https://evimesweb.com/#estudio"
+                },
+                "about": "Barbería en Peñagrande, Madrid."
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+  </script>
+  <!-- Modo de la página (como la home): cine (Lenis + Three) o fijo (movimiento reducido, ahorro de datos). ?modo=fijo | ?modo=cine -->
+  <script>
+    (function () {
+      var EV = (window.EV = window.EV || {}), q = new URLSearchParams(location.search).get('modo');
+      var rm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+      var c = navigator.connection || {}, lenta = c.saveData || /(^|-)(2g|3g)$/.test(c.effectiveType || '');
+      EV.reducedMotion = rm;
+      EV.mode = q === 'fijo' ? 'still' : q === 'cine' ? 'cine' : (rm || lenta) ? 'still' : 'cine';
+      document.documentElement.classList.add(EV.mode === 'cine' ? 'is-cine' : 'is-still');
+      if (window.matchMedia) matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', function () { if (!q) location.reload(); });
+    })();
+  </script>
+  <link rel="preload" as="image" type="image/webp" href="assets/onda/onda-movil.webp" media="(max-width: 719px)">
+  <link rel="preload" as="image" type="image/webp" href="assets/onda/onda-escritorio.webp" media="(min-width: 720px)">
+  <link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/fondo.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/paginas-evimes.css">
+</head>
+<body class="inicio pag pag--proyectos" data-fondo-op="0.5">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- ===== Fondo global (el mismo de la home): rayos (2D) + la onda de cromo (Three.js) + grano ===== -->
+  <div class="fondo" aria-hidden="true">
+    <canvas class="fondo__rayos"></canvas>
+    <picture class="fondo__fija">
+      <source media="(max-width: 719px)" type="image/webp" srcset="assets/onda/onda-movil.webp">
+      <img src="assets/onda/onda-escritorio.webp" alt="" width="1920" height="1080" decoding="async" fetchpriority="high">
+    </picture>
+    <canvas class="fondo__onda"></canvas>
+  </div>
+  <div class="grano" aria-hidden="true"></div>
+
+  <!-- ===== Cabecera flotante de cristal (la misma en todas las páginas) ===== -->
+  <header class="cabecera">
+    <a class="cabecera__marca" href="index.html" aria-label="Evimes, inicio" data-logo="wordmark"></a>
+    <nav class="cabecera__nav" id="cabecera-nav" aria-label="Principal">
+      <ul>
+        <li><a href="servicios.html" data-scramble><span class="sl">Servicios</span></a></li>
+        <li><a href="proyectos.html" data-scramble aria-current="page"><span class="sl">Proyectos</span></a></li>
+        <li><a href="planes.html" data-scramble><span class="sl">Planes</span></a></li>
+        <li><a href="contacto.html" data-scramble><span class="sl">Contacto</span></a></li>
+      </ul>
+    </nav>
+    <a class="pastilla cabecera__cta" href="contacto.html" data-scramble><span class="sl">Pide tu propuesta</span></a>
+    <button class="cabecera__abrir" type="button" aria-expanded="false" aria-controls="cabecera-nav">
+      <span class="sr-only">Menú</span>
+      <span class="cabecera__lineas" aria-hidden="true"><span></span><span></span></span>
+    </button>
+  </header>
+
+  <main id="contenido">
+    <!-- BORRADOR: textos en js/data/proyectos-pagina.js · cifras de Disco en js/data/pagespeed.js -->
+    <!-- 1 · Cabecera -->
+    <section class="pag-hero pag-hero--proyectos" aria-labelledby="h1">
+      <h1 class="display pag-hero__titulo" id="h1" data-pr="hero.titulo">Webs que dan que hablar.</h1>
+      <p class="pag-hero__texto" data-pr="hero.texto">Pocas y bien hechas. Cada una diseñada y programada a mano para un negocio concreto.</p>
+    </section>
+
+    <!-- 2 · Disco Producción, caso de estudio (fondo global) -->
+    <article class="caso" id="disco" aria-labelledby="h-disco">
+      <header class="caso__cab">
+        <h2 class="display caso__nombre" id="h-disco"><span class="caso__num display" aria-hidden="true">01</span> <span>Disco <span class="accent">Producción</span></span></h2>
+      </header>
+      <div class="caso__vista">
+        <a class="vitrina" href="https://discoproduccion.com" target="_blank" rel="noopener" aria-label="Abrir la web de Disco Producción (se abre en otra pestaña)">
+          <span class="vitrina__pantalla"><img class="vitrina__tira" src="assets/proyectos/disco-strip.webp" alt="La web de Disco Producción: portada, servicios, trabajos y contacto." width="1024" height="2560" loading="lazy" decoding="async"></span>
+        </a>
+        <div class="caso__ficha">
+          <dl class="caso__dl">
+            <div><dt>Cliente</dt><dd data-pr="disco.cliente">Disco, productora audiovisual de foto, vídeo y edición en Madrid.</dd></div>
+            <div><dt>Servicios</dt><dd>Desarrollo web · Animaciones 3D · Posicionamiento</dd></div>
+          </dl>
+          <a class="pastilla pastilla--grande" href="https://discoproduccion.com" target="_blank" rel="noopener" data-scramble><span class="sl">Ver la web</span> <span aria-hidden="true">→</span><span class="sr-only"> de Disco Producción (se abre en otra pestaña)</span></a>
+        </div>
+      </div>
+      <div class="caso__cuerpo">
+        <section class="caso__reto" aria-labelledby="h-reto">
+          <h3 class="caso__t" id="h-reto">El reto</h3>
+          <p data-pr="disco.reto" data-lineas>Una web tan creativa como lo que producen, que transmita ritmo y energía.</p>
+        </section>
+        <section class="caso__hicimos" aria-labelledby="h-hicimos">
+          <h3 class="caso__t" id="h-hicimos">Lo que hicimos</h3>
+          <ul class="caso__lista" data-escalona data-pr-lista="disco.hicimos">
+            <li>Una intro de carga con el flash de una cámara.</li>
+            <li>Un hero con un fluido que reacciona al ratón.</li>
+            <li>Un destello 3D que recorre la web.</li>
+            <li>Y por debajo, una web rápida y accesible.</li>
+          </ul>
+        </section>
+        <section class="caso__resultado" aria-labelledby="h-resultado">
+          <h3 class="caso__t" id="h-resultado">Resultado</h3>
+          <div class="psi-caso" data-psi-caso role="img" aria-label="PageSpeed Insights de discoproduccion.com: rendimiento 99, accesibilidad 100, prácticas recomendadas 100, seo 100; Agentic Browsing 2/2."><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="psiG-caso" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00e5ff"/><stop offset=".6" stop-color="#8ff4ff"/><stop offset="1" stop-color="#ffffff"/></linearGradient></defs></svg><ul class="psi-caso__lista"><li class="psi-g" data-v="99"><svg class="psi-g__anillo" viewBox="0 0 100 100" aria-hidden="true"><circle class="psi-g__base" cx="50" cy="50" r="42"/><circle class="psi-g__arco" cx="50" cy="50" r="42" stroke="url(#psiG-caso)" style="stroke-dashoffset:2.6"/></svg><b>99</b><span>Rendimiento</span></li><li class="psi-g" data-v="100"><svg class="psi-g__anillo" viewBox="0 0 100 100" aria-hidden="true"><circle class="psi-g__base" cx="50" cy="50" r="42"/><circle class="psi-g__arco" cx="50" cy="50" r="42" stroke="url(#psiG-caso)" style="stroke-dashoffset:0.0"/></svg><b>100</b><span>Accesibilidad</span></li><li class="psi-g" data-v="100"><svg class="psi-g__anillo" viewBox="0 0 100 100" aria-hidden="true"><circle class="psi-g__base" cx="50" cy="50" r="42"/><circle class="psi-g__arco" cx="50" cy="50" r="42" stroke="url(#psiG-caso)" style="stroke-dashoffset:0.0"/></svg><b>100</b><span>Prácticas recomendadas</span></li><li class="psi-g" data-v="100"><svg class="psi-g__anillo" viewBox="0 0 100 100" aria-hidden="true"><circle class="psi-g__base" cx="50" cy="50" r="42"/><circle class="psi-g__arco" cx="50" cy="50" r="42" stroke="url(#psiG-caso)" style="stroke-dashoffset:0.0"/></svg><b>100</b><span>SEO</span></li></ul><p class="psi-caso__pill"><i aria-hidden="true"></i>Agentic Browsing <b>2/2</b></p><p class="psi-caso__nota">Medido con PageSpeed Insights · discoproduccion.com · 16 de noviembre de 2026</p></div>
+        </section>
+      </div>
+    </article>
+
+    <!-- 3 · Amad Peña Barbershop (gris). Sin cifras: no hay datos medidos. -->
+    <article class="caso caso--gris" id="amad" aria-labelledby="h-amad" data-cubre>
+      <header class="caso__cab">
+        <h2 class="display caso__nombre" id="h-amad"><span class="caso__num display" aria-hidden="true">02</span> <span data-pr="amad.nombre">Amad Peña Barbershop</span></h2>
+      </header>
+      <div class="caso__vista">
+        <figure class="captura">
+          <a href="https://patosarmientooscar.github.io/Pelqueria-A-M/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <picture><source type="image/webp" srcset="assets/proyectos/amad-pena-barbershop.webp"><img src="assets/proyectos/amad-pena-barbershop.jpg" alt="Portada de la web de Amad Peña Barbershop." width="1600" height="1000" loading="lazy" decoding="async"></picture>
+          </a>
+        </figure>
+        <div class="caso__ficha">
+          <dl class="caso__dl">
+            <div><dt>Cliente</dt><dd data-pr="amad.cliente">Barbería en Peñagrande, Madrid.</dd></div>
+            <div><dt>La web</dt><dd data-pr="amad.texto">Web con servicios, galería de cortes y reservas.</dd></div>
+          </dl>
+          <a class="pastilla pastilla--grande" href="https://patosarmientooscar.github.io/Pelqueria-A-M/" target="_blank" rel="noopener" data-scramble><span class="sl">Ver la web</span> <span aria-hidden="true">→</span><span class="sr-only"> de Amad Peña Barbershop (se abre en otra pestaña)</span></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4 · Próximos proyectos (sin nombres) -->
+    <section class="horno" aria-label="Próximos proyectos">
+      <ul class="horno__lista" data-escalona>
+        <li class="horno__card"><img src="assets/proyectos/horno-1.webp" alt="" width="720" height="512" loading="lazy" decoding="async"><p class="horno__t"><i aria-hidden="true"></i><span data-pr="horno.titulo">Próximo proyecto</span></p><p class="display horno__estado" data-pr="horno.estado">En el horno</p></li>
+        <li class="horno__card"><img src="assets/proyectos/horno-2.webp" alt="" width="720" height="512" loading="lazy" decoding="async"><p class="horno__t"><i aria-hidden="true"></i><span data-pr="horno.titulo">Próximo proyecto</span></p><p class="display horno__estado" data-pr="horno.estado">En el horno</p></li>
+      </ul>
+    </section>
+
+    <!-- 5 · CTA final -->
+    <section class="pag-fin" aria-labelledby="h-fin">
+      <h2 class="display pag-fin__titulo" id="h-fin" data-pr="fin.titulo">¿El siguiente eres tú?</h2>
+      <p class="pag-fin__texto" data-pr="fin.texto">Cuéntanos qué necesitas y te preparamos una propuesta.</p>
+      <div class="pag-fin__botones">
+        <a class="pastilla pastilla--grande" href="contacto.html" data-scramble><span class="sl" data-pr="fin.cta">Pide tu propuesta</span></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Pie ===== -->
+  <footer class="pie">
+    <p>© 2026 Evimes · Madrid</p>
+    <nav aria-label="Textos legales">
+      <ul class="pie__legales">
+        <li><a href="aviso-legal.html">Aviso legal</a></li>
+        <li><a href="terminos.html">Términos</a></li>
+        <li><a href="privacidad.html">Privacidad</a></li>
+        <li><a href="cookies.html">Cookies</a></li>
+      </ul>
+    </nav>
+  </footer>
+
+  <!-- Librerías (diferidas). Three.js 0.160.0 lo importa js/fondo/onda.js al primer gesto. -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script defer src="js/config.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/engine/util.js"></script>
+  <script defer src="js/fondo/rayos.js"></script>
+  <script defer src="js/fondo/onda.js"></script>
+  <script defer src="js/fondo/fondo.js"></script>
+  <script defer src="js/data/pagespeed.js"></script>
+  <script defer src="js/data/proyectos-pagina.js"></script>
+  <script defer src="js/paginas/proyectos.js"></script>
+  <script defer src="js/paginas/paginas.js"></script>
+  <script type="module" src="js/ui/scramble.js"></script>
+</body>
+</html>

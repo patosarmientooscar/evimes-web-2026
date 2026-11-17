@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Evimes | Diseño web en Madrid desde 150 €</title>
+  <meta name="description" content="Diseño web a medida en Madrid. Webs rápidas, únicas y pensadas para convertir visitas en clientes. Desde 150 €. Pide tu propuesta a Evimes.">
+
+  <link rel="canonical" href="https://evimesweb.com/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#080b14">
+  <meta name="robots" content="index, follow">
+  <meta name="geo.region" content="ES-MD">
+  <meta name="geo.placename" content="Madrid">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Evimes">
+  <meta property="og:url" content="https://evimesweb.com/">
+  <meta property="og:title" content="Evimes | Diseño web en Madrid desde 150 €">
+  <meta property="og:description" content="Tu negocio merece una web a su altura. Diseño web a medida en Madrid, desde 150 €.">
+  <meta property="og:image" content="https://evimesweb.com/assets/onda/onda-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bandas de cromo con la forma de la línea del monograma de Evimes sobre fondo navy.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Evimes | Diseño web en Madrid desde 150 €">
+  <meta name="twitter:description" content="Tu negocio merece una web a su altura. Diseño web a medida en Madrid, desde 150 €.">
+  <meta name="twitter:image" content="https://evimesweb.com/assets/onda/onda-og.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://evimesweb.com/#estudio",
+    "name": "Evimes",
+    "description": "Diseño web a medida en Madrid. Webs rápidas, únicas y pensadas para convertir visitas en clientes. Desde 150 €.",
+    "url": "https://evimesweb.com/",
+    "logo": "https://evimesweb.com/apple-touch-icon.png",
+    "image": "https://evimesweb.com/assets/onda/onda-og.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Cardenal Herrera Oria 171",
+      "addressLocality": "Madrid",
+      "addressRegion": "Comunidad de Madrid",
+      "postalCode": "28034",
+      "addressCountry": "ES"
+    },
+    "areaServed": [{ "@type": "City", "name": "Madrid" }, { "@type": "Country", "name": "España" }],
+    "serviceType": ["Diseño web", "Tiendas online", "SEO", "Software e IA", "Automatización de servicios"],
+    "priceRange": "€€",
+    "makesOffer": [
+      { "@type": "Offer", "name": "Fundamento", "price": "150", "priceCurrency": "EUR", "description": "Para empezar con buena base. Desde 150 €." },
+      { "@type": "Offer", "name": "Inmersión", "price": "500", "priceCurrency": "EUR", "description": "Para destacar y captar clientes." },
+      { "@type": "Offer", "name": "Impacto", "description": "Proyectos a medida. Presupuesto según el proyecto." }
+    ]
+  }
+  </script>
+
+  <!-- Modo antes de pintar: "cine" (onda en vivo tras el primer gesto) o "still"
+       (imagen fija): movimiento reducido, ahorro de datos o conexión lenta.
+       Sin sondeo de WebGL aquí (crear un contexto cuesta): si falla al cargar la
+       onda, se queda el póster. ?modo=fijo | ?modo=cine -->
+  <script>
+    (function () {
+      var EV = (window.EV = window.EV || {}), q = new URLSearchParams(location.search).get('modo');
+      var rm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+      var c = navigator.connection || {}, lenta = c.saveData || /(^|-)(2g|3g)$/.test(c.effectiveType || '');
+      EV.reducedMotion = rm;
+      EV.mode = q === 'fijo' ? 'still' : q === 'cine' ? 'cine' : (rm || lenta) ? 'still' : 'cine';
+      document.documentElement.classList.add(EV.mode === 'cine' ? 'is-cine' : 'is-still');
+      if (window.matchMedia) matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', function () { if (!q) location.reload(); });
+    })();
+  </script>
+  <link rel="preload" as="image" type="image/webp" href="assets/onda/onda-movil.webp" media="(max-width: 719px)">
+  <link rel="preload" as="image" type="image/webp" href="assets/onda/onda-escritorio.webp" media="(min-width: 720px)">
+  <link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/fondo.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/bento.css">
+  <link rel="stylesheet" href="css/gris.css">
+  <link rel="stylesheet" href="css/oficina.css">
+  <link rel="stylesheet" href="css/con-quien.css">
+  <link rel="stylesheet" href="css/contacto.css">
+</head>
+<body class="inicio">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- ===== Fondo global: rayos (2D) + la onda de cromo (Three.js) + grano ===== -->
+  <div class="fondo" aria-hidden="true">
+    <canvas class="fondo__rayos"></canvas>
+    <!-- Póster (hasta el primer gesto) y versión fija: fotograma del propio render. -->
+    <picture class="fondo__fija">
+      <source media="(max-width: 719px)" type="image/webp" srcset="assets/onda/onda-movil.webp">
+      <img src="assets/onda/onda-escritorio.webp" alt="" width="1920" height="1080" decoding="async" fetchpriority="high">
+    </picture>
+    <canvas class="fondo__onda"></canvas>
+  </div>
+  <div class="grano" aria-hidden="true"></div>
+
+  <!-- ===== Cabecera flotante de cristal ===== -->
+  <header class="cabecera">
+    <a class="cabecera__marca" href="#inicio" aria-label="Evimes, inicio" data-logo="wordmark"></a>
+    <nav class="cabecera__nav" id="cabecera-nav" aria-label="Principal">
+      <ul>
+        <li><a href="servicios.html" data-scramble><span class="sl" data-c="inicio.menu.servicios">Servicios</span></a></li>
+        <li><a href="proyectos.html" data-scramble><span class="sl" data-c="inicio.menu.proyectos">Proyectos</span></a></li>
+        <li><a href="planes.html" data-scramble><span class="sl" data-c="inicio.menu.planes">Planes</span></a></li>
+        <li><a href="contacto.html" data-scramble><span class="sl" data-c="inicio.menu.contacto">Contacto</span></a></li>
+      </ul>
+    </nav>
+    <a class="pastilla cabecera__cta" href="contacto.html" data-scramble><span class="sl" data-c="inicio.menu.cta">Pide tu propuesta</span></a>
+    <button class="cabecera__abrir" type="button" aria-expanded="false" aria-controls="cabecera-nav">
+      <span class="sr-only">Menú</span>
+      <span class="cabecera__lineas" aria-hidden="true"><span></span><span></span></span>
+    </button>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ===== Hero ===== -->
+    <section class="portada" id="inicio" aria-labelledby="h1">
+      <div class="portada__texto">
+        <h1 class="display portada__h1" id="h1">
+          <span class="linea"><span data-c="inicio.hero.linea1">Tu negocio merece</span></span>
+          <span class="linea"><span data-c="inicio.hero.linea2">una web a su <span class="accent">altura</span>.</span></span>
+        </h1>
+        <p class="portada__sub aparece" data-c="inicio.hero.sub">Diseño web a medida en Madrid. Webs rápidas, únicas y pensadas para convertir visitas en clientes. Desde 150&nbsp;€.</p>
+        <div class="portada__botones aparece">
+          <a class="pastilla pastilla--grande" href="#contacto" data-scramble><span class="sl" data-c="inicio.hero.cta">Pide tu propuesta</span></a>
+          <a class="enlace" href="#oficina" data-scramble><span class="sl" data-c="inicio.hero.secundario">Ver proyectos</span></a>
+        </div>
+      </div>
+      <p class="portada__desliza" aria-hidden="true"><i></i><span data-c="inicio.hero.desliza">Desliza</span></p>
+    </section>
+
+    <!-- ===== Herramientas ===== -->
+    <section class="herramientas" id="herramientas" aria-labelledby="h-herramientas">
+      <h2 class="etiqueta" id="h-herramientas" data-c="inicio.herramientas">Herramientas con las que trabajamos</h2>
+      <!-- Cromo de la cinta: degradado en el espacio del icono (viewBox 24). -->
+      <svg class="cinta__defs" width="0" height="0" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="chrome" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="10" y2="24">
+            <stop offset="0" stop-color="#fff"/><stop offset=".28" stop-color="#c3ccd9"/><stop offset=".47" stop-color="#5d687c"/>
+            <stop offset=".53" stop-color="#9fb0c6"/><stop offset=".7" stop-color="#eef3f8"/><stop offset=".86" stop-color="#8fe9f5"/>
+            <stop offset="1" stop-color="#6f7b8f"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="cinta">
+        <div class="cinta__pista">
+          <ul class="cinta__lista" data-herramientas>
+            <li style="--i:0"><svg class="cinta__logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="url(#chrome)" d="M.38 0a.268.268 0 0 0-.256.332l2.894 11.716a.268.268 0 0 0 .01.04l2.89 11.708a.268.268 0 0 0 .447.128L23.802 7.15a.268.268 0 0 0-.112-.45l-5.784-1.667a.268.268 0 0 0-.123-.035L6.38 1.715a.268.268 0 0 0-.144-.04L.456.01A.268.268 0 0 0 .38 0zm.374.654L5.71 2.08 1.99 5.664zM6.61 2.34l4.864 1.4-3.65 3.515zm-.522.12l1.217 4.926-4.877-1.4zm6.28 1.538l4.878 1.404-3.662 3.53zm-.52.13l1.208 4.9-4.853-1.392zm6.3 1.534l4.947 1.424-3.715 3.574zm-.524.12l1.215 4.926-4.876-1.398zm-15.432.696l4.964 1.424-3.726 3.586zM8.047 8.15l4.877 1.4-3.66 3.527zm-.518.137l1.236 5.017-4.963-1.432zm6.274 1.535l4.965 1.425-3.73 3.586zm-.52.127l1.235 5.012-4.958-1.43zm-9.63 2.438l4.873 1.406-3.656 3.523zm5.854 1.687l4.863 1.403-3.648 3.51zm-.54.04l1.214 4.927-4.875-1.4zm-3.896 4.02l5.037 1.442-3.782 3.638z"/></svg><span class="cinta__nombre" data-n="Three.js">Three.js</span></li>
+            <li style="--i:1"><svg class="cinta__logo cinta__logo--marca" viewBox="0 6.48 24 11.03" width="48" height="22" aria-hidden="true" focusable="false"><path fill="url(#chrome)" d="M3.489 10.164c-.565.548-.885 1.172-.885 1.835 0 2.167 3.415 3.921 7.631 3.921 2.339 0 4.437-.484 5.837-1.335-1.533 1.426-4.265 2.43-7.385 2.43C3.89 17.015 0 14.769 0 11.999s3.89-5.014 8.689-5.014c3.131.002 5.872 1.009 7.398 2.444-1.399-.856-3.504-1.351-5.852-1.351-2.506 0-4.73.621-6.121 1.579l.785 3.395.971-3.481h.737l.971 3.481.805-3.481h.805L7.953 14.11h-.717l-.991-3.566L5.24 14.11h-.714zm19.839 3.48h-.162v.424h-.142v-.424h-.164v-.122h.468zm.064-.122h.209l.095.364.096-.364H24v.546h-.133v-.415h-.002l-.113.415h-.109l-.115-.415h-.003v.415h-.133zm-5.699.515c-.2.084-.399.126-.601.126-.319 0-.608-.055-.863-.166q-.3825-.1665-.645-.459c-.175-.195-.311-.424-.404-.688-.093-.263-.14-.547-.14-.851 0-.313.047-.601.14-.869.093-.269.226-.502.402-.699.175-.2.39-.355.645-.468s.541-.171.863-.171c.215 0 .421.034.621.098.199.064.381.16.543.284s.295.279.399.463.169.395.193.632h-.874c-.055-.233-.159-.408-.315-.525-.155-.118-.343-.176-.567-.176-.207 0-.382.04-.526.12s-.262.187-.35.322a1.41 1.41 0 0 0-.196.459c-.039.171-.062.348-.062.532 0 .175.02.346.062.512.04.167.107.315.196.448.088.133.206.24.35.32s.319.119.526.119c.303 0 .539-.077.705-.23s.262-.375.29-.668h-.922v-.689h1.75v2.255h-.584l-.093-.472c-.162.21-.344.357-.543.441m2.708-4.14v3.395h2.033v.774h-2.949V9.897zm-9.204 1.585c.109.151.191.337.251.557.053.21.08.452.08.716v.047H9.372c.011.41.164.876.807.876.45 0 .703-.344.719-.537l.002-.042h.592l-.007.051c-.008.075-.051.222-.135.377-.049.086-.104.166-.166.239a1.3 1.3 0 0 1-.248.218c-.071.046-.158.1-.287.139-.148.047-.326.069-.543.069-.415 0-.763-.151-1.007-.434a1.43 1.43 0 0 1-.266-.482c-.06-.182-.091-.386-.091-.601 0-.485.12-.896.348-1.186.125-.158.278-.28.457-.362.191-.086.41-.131.654-.131.218 0 .413.043.581.127.165.082.304.202.415.359m-1.064.047c-.402 0-.741.357-.765.785h1.543c-.046-.528-.302-.785-.778-.785m4.373.388c.058.182.086.381.084.588 0 .19-.022.385-.064.563-.049.206-.122.39-.22.545-.11.178-.252.318-.419.415-.186.109-.408.164-.654.164-.228 0-.426-.057-.585-.173a.89.89 0 0 1-.198-.193v.282h-.561V9.983h.59v1.393c.093-.111.202-.2.324-.262.146-.078.313-.118.497-.12.199 0 .383.04.547.118.158.075.295.184.408.324.109.135.193.297.251.481m-.53.67c0-.2-.013-.459-.111-.672-.12-.26-.335-.384-.654-.384-.3 0-.506.135-.628.417-.084.195-.126.452-.126.785 0 .696.412.942.765.942.244 0 .435-.102.565-.303.125-.191.189-.462.189-.785"/></svg><span class="cinta__nombre" data-n="WebGL">WebGL</span></li>
+            <li style="--i:2"><svg class="cinta__logo cinta__logo--marca" viewBox="0 6.53 24 10.95" width="48" height="22" aria-hidden="true" focusable="false"><path fill="url(#chrome)" d="M3.607 13.88c1.32 1.197 3.862 2.008 6.781 2.008 2.375 0 4.503-.481 5.923-1.325-1.555 1.413-4.328 2.41-7.495 2.41C3.947 16.972 0 14.745 0 11.999c0-2.747 3.948-4.973 8.818-4.972 3.179.001 5.96 1.001 7.511 2.425-1.421-.85-3.558-1.34-5.941-1.34-2.828 0-5.303.761-6.655 1.897.01-.004.019-.008.028-.013.253-.119.548-.179.885-.179.336 0 .631.06.885.179.253.12.465.28.635.48.171.201.298.431.383.691.086.26.128.531.128.812 0 .282-.042.553-.128.813-.085.26-.212.49-.383.691-.17.2-.382.359-.635.477-.254.117-.549.176-.885.176-.337 0-.632-.059-.885-.176a2.2 2.2 0 0 1-.154-.08m-.347-1.283c.056.203.143.385.262.547s.271.292.458.391q.279.147.666.147t.666-.147c.186-.099.339-.229.458-.391s.206-.344.261-.547a2.3 2.3 0 0 0 0-1.232c-.055-.203-.142-.385-.261-.547s-.272-.293-.458-.391-.408-.148-.666-.148-.48.05-.666.148c-.187.099-.339.229-.458.391s-.206.344-.262.547c-.055.202-.083.407-.083.616 0 .208.028.414.083.616m4.254-1.183v.356h.009c.073-.146.187-.252.344-.318.156-.066.328-.099.515-.099.208 0 .39.037.544.112.155.074.283.175.385.302.103.128.18.274.232.441.052.166.078.342.078.529s-.025.363-.075.529c-.051.167-.127.312-.229.435-.103.124-.231.222-.386.293-.154.071-.334.107-.539.107-.066 0-.139-.007-.221-.02a1.25 1.25 0 0 1-.242-.067.94.94 0 0 1-.227-.125.67.67 0 0 1-.179-.196h-.009v1.359h-.446v-3.638zm1.585.936c-.033-.117-.083-.222-.151-.313-.067-.092-.154-.165-.26-.219-.105-.054-.229-.081-.371-.081-.149 0-.275.028-.379.086a.76.76 0 0 0-.255.226c-.066.094-.113.2-.143.318-.029.119-.044.24-.044.362 0 .129.016.253.047.373.031.121.08.227.148.319.067.091.155.165.262.221q.162.084.39.084c.152 0 .28-.029.382-.087a.694.694 0 0 0 .246-.229c.063-.095.108-.203.135-.325.028-.122.042-.248.042-.377 0-.122-.016-.241-.049-.358m2.799 1.527c-.201.149-.455.224-.761.224q-.324 0-.561-.102c-.159-.068-.292-.163-.4-.285-.107-.122-.188-.268-.242-.438-.054-.169-.084-.354-.091-.554 0-.2.031-.384.094-.55.062-.166.15-.311.263-.433s.248-.217.402-.285c.155-.067.325-.101.51-.101.24 0 .439.048.598.145.158.097.285.22.381.37q.144.2235.198.489c.037.177.052.345.045.505h-2.018c-.004.115.01.224.041.328.032.103.082.195.151.274.07.08.158.143.266.191.108.047.234.071.38.071.187 0 .341-.043.461-.128q.1785-.1275.237-.387h.438c-.059.295-.19.517-.392.666m-.108-1.688c-.04-.092-.093-.171-.161-.237a.77.77 0 0 0-.239-.157c-.092-.039-.194-.059-.304-.059-.115 0-.218.02-.31.059a.71.71 0 0 0-.237.16.8.8 0 0 0-.156.236c-.038.09-.06.186-.067.287h1.545a.86.86 0 0 0-.071-.289m1.259-.775v.418h.009c.185-.32.478-.479.88-.479.178 0 .326.023.445.071s.215.114.288.199c.074.085.125.186.155.303.029.117.044.247.044.39v1.733h-.446v-1.783q0-.2445-.147-.387c-.097-.095-.231-.143-.402-.143-.136 0-.253.021-.353.062-.099.04-.182.098-.248.173a.75.75 0 0 0-.149.262c-.033.1-.049.21-.049.328v1.487h-.447v-2.634zm4.908 2.606c-.202.083-.406.125-.611.125-.324 0-.616-.056-.875-.166s-.477-.262-.655-.456c-.178-.193-.314-.42-.409-.682-.095-.261-.142-.542-.142-.844 0-.31.047-.597.142-.862.094-.265.23-.496.408-.694.177-.197.395-.352.654-.464.259-.113.55-.169.875-.169.217 0 .427.032.631.096.203.064.387.158.551.282.164.125.3.277.406.459.107.182.172.391.196.626h-.889c-.055-.231-.162-.405-.32-.521-.159-.116-.35-.174-.575-.174-.21 0-.388.04-.534.119s-.265.186-.356.319q-.1365.201-.198.456-.063.255-.063.528c0 .174.021.344.063.508.041.165.108.313.199.444.091.132.209.237.356.316.146.08.324.119.534.119.309 0 .547-.076.715-.228.169-.152.267-.372.294-.661h-.936v-.681h1.776v2.237h-.591l-.095-.47c-.166.209-.35.355-.551.438m2.746-4.107v3.368h2.063v.768h-2.992V9.913zM24 13.667c0 .07-.017.134-.052.194a.389.389 0 0 1-.336.194.389.389 0 0 1-.336-.194.39.39 0 0 1-.052-.194.389.389 0 0 1 .194-.336.39.39 0 0 1 .194-.052.389.389 0 0 1 .336.194c.035.06.052.125.052.194m-.075 0c0-.086-.031-.16-.092-.221a.302.302 0 0 0-.221-.092c-.086 0-.16.031-.221.092a.302.302 0 0 0-.092.221c0 .086.031.16.092.221s.135.092.221.092.16-.031.221-.092a.302.302 0 0 0 .092-.221m-.489-.207h.186c.052 0 .09.01.114.032.023.021.035.049.035.085q0 .0405-.027.072c-.018.02-.046.035-.085.044.016.006.028.013.035.019q.0165.015.033.042c.001.002.023.042.067.12h-.122c-.039-.079-.066-.126-.079-.141-.014-.016-.028-.023-.041-.023-.003 0-.007 0-.013.001v.163h-.103zm.103.176h.045q.045 0 .063-.015a.046.046 0 0 0 .018-.037.05.05 0 0 0-.017-.038c-.012-.009-.032-.014-.06-.014h-.049z"/></svg><span class="cinta__nombre" data-n="GLSL">GLSL</span></li>
+            <li style="--i:3"><svg class="cinta__logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="url(#chrome)" d="m0 4.784 8.652 14.432 8.652-14.432zm22.032.145L20.07 8.202H24L22.032 4.93zm-4.46 0-4.192 6.993h8.384zm2.498 3.575 1.962 3.273L24 8.504zm-6.69 3.72 4.192 6.992 4.192-6.992z"/></svg><span class="cinta__nombre" data-n="WebGPU">WebGPU</span></li>
+            <li style="--i:4"><svg class="cinta__logo cinta__logo--marca" viewBox="0 7.09 24 9.82" width="54" height="22" aria-hidden="true" focusable="false"><path fill="url(#chrome)" d="M9.83,7.59C10.647,7.595 11.267,7.828 11.672,8.282C12.055,8.713 12.239,9.336 12.219,10.132L12.205,10.193C12.197,10.211 12.185,10.229 12.17,10.243C12.14,10.272 12.099,10.288 12.057,10.288L10.398,10.288C10.29,10.288 10.199,10.2 10.199,10.093C10.199,9.669 10.071,9.435 9.809,9.383L9.689,9.372C9.347,9.372 9.125,9.583 9.119,9.951C9.112,10.361 9.344,10.734 10.004,11.374C10.872,12.19 11.221,12.913 11.204,13.867C11.177,15.411 10.127,16.41 8.531,16.41C7.716,16.41 7.093,16.191 6.678,15.761C6.258,15.324 6.066,14.683 6.106,13.855C6.108,13.813 6.125,13.772 6.155,13.743C6.185,13.714 6.226,13.698 6.267,13.698L7.983,13.698C8.007,13.699 8.03,13.705 8.052,13.715C8.073,13.726 8.092,13.741 8.107,13.76C8.12,13.775 8.129,13.793 8.135,13.813C8.14,13.832 8.141,13.853 8.137,13.873C8.118,14.171 8.171,14.394 8.288,14.518C8.363,14.598 8.469,14.639 8.599,14.639C8.916,14.639 9.102,14.414 9.109,14.024C9.115,13.687 9.007,13.39 8.427,12.792C7.676,12.058 7.003,11.3 7.024,10.108C7.037,9.416 7.311,8.784 7.798,8.327C8.312,7.845 9.014,7.59 9.83,7.59ZM4.047,7.618C4.794,7.612 5.381,7.842 5.789,8.303C6.221,8.79 6.44,9.524 6.441,10.485C6.44,10.527 6.422,10.567 6.392,10.597C6.362,10.626 6.322,10.643 6.28,10.643L4.479,10.643C4.448,10.642 4.417,10.629 4.395,10.607C4.373,10.584 4.361,10.553 4.36,10.522C4.346,9.899 4.172,9.576 3.828,9.538L3.757,9.534C3.067,9.535 2.66,10.472 2.444,10.992C2.142,11.719 1.988,12.507 2.018,13.293C2.033,13.659 2.092,14.173 2.438,14.386C2.746,14.575 3.185,14.45 3.451,14.24C3.716,14.031 3.93,13.669 4.02,13.339C4.033,13.293 4.033,13.258 4.021,13.241C4.015,13.233 4.003,13.229 3.989,13.226L3.485,13.222C3.461,13.222 3.436,13.216 3.414,13.206C3.392,13.196 3.372,13.181 3.356,13.162C3.344,13.148 3.335,13.13 3.331,13.112C3.327,13.093 3.327,13.074 3.331,13.056L3.647,11.682C3.663,11.611 3.726,11.558 3.804,11.548L3.804,11.545L6.839,11.545C6.846,11.545 6.854,11.545 6.86,11.546C6.939,11.556 6.995,11.63 6.994,11.71L6.994,11.714L6.678,13.085C6.661,13.163 6.583,13.22 6.494,13.22L6.113,13.22C6.1,13.22 6.086,13.225 6.075,13.233C6.064,13.241 6.056,13.253 6.052,13.266C5.7,14.46 5.223,15.282 4.594,15.775C4.058,16.195 3.399,16.391 2.517,16.391C1.725,16.391 1.191,16.136 0.738,15.633C0.14,14.967 -0.107,13.879 0.043,12.566C0.313,10.103 1.589,7.618 4.047,7.618ZM21.016,7.75C23.026,7.75 24.03,8.662 23.999,10.461C23.962,12.569 22.678,14.119 20.745,14.477C20.47,14.527 20.191,14.547 19.912,14.545L18.978,14.541C18.963,14.541 18.948,14.547 18.937,14.558C18.926,14.568 18.92,14.583 18.92,14.598C18.92,14.608 18.922,14.618 18.928,14.627C18.933,14.636 18.941,14.643 18.95,14.648L19.744,15.062C19.809,15.096 19.835,15.153 19.82,15.226C19.815,15.249 19.618,16.139 19.613,16.159C19.596,16.237 19.533,16.282 19.442,16.282L17.739,16.282C17.715,16.282 17.69,16.277 17.668,16.267C17.646,16.257 17.626,16.241 17.61,16.223C17.598,16.208 17.589,16.191 17.585,16.173C17.58,16.155 17.581,16.135 17.585,16.116L19.481,7.875C19.5,7.789 19.581,7.751 19.653,7.751L21.016,7.75ZM17.273,7.762C17.292,7.77 17.31,7.781 17.324,7.795C17.338,7.81 17.351,7.828 17.358,7.847C17.366,7.866 17.369,7.886 17.369,7.906L17.358,16.119C17.361,16.138 17.36,16.158 17.355,16.177C17.35,16.196 17.34,16.213 17.328,16.228C17.313,16.245 17.295,16.259 17.274,16.268C17.254,16.277 17.232,16.282 17.21,16.281L15.397,16.281C15.377,16.282 15.356,16.277 15.337,16.27C15.318,16.262 15.3,16.25 15.286,16.236C15.272,16.221 15.26,16.204 15.253,16.185C15.245,16.166 15.241,16.146 15.241,16.125L15.28,15.328C15.282,15.241 15.28,15.217 15.229,15.211L15.161,15.209L13.447,15.209C13.323,15.209 13.314,15.22 13.27,15.334L12.914,16.191C12.882,16.252 12.818,16.281 12.722,16.281L10.927,16.281C10.818,16.281 10.74,16.173 10.781,16.072L14.499,7.873C14.524,7.824 14.562,7.75 14.648,7.75L17.214,7.75C17.234,7.75 17.254,7.754 17.273,7.762ZM15.5,9.985C15.492,9.953 15.466,9.956 15.445,9.998C15.43,10.028 15.416,10.06 15.405,10.091L14.121,13.274C14.114,13.294 14.109,13.31 14.105,13.322C14.104,13.328 14.103,13.335 14.104,13.341C14.105,13.347 14.108,13.353 14.111,13.358C14.115,13.363 14.12,13.367 14.126,13.37C14.131,13.373 14.137,13.376 14.143,13.376L15.215,13.39C15.334,13.38 15.34,13.374 15.352,13.253C15.354,13.21 15.506,10.022 15.5,9.985ZM20.112,9.582C20.097,9.582 20.083,9.588 20.072,9.599C20.061,9.609 20.055,9.624 20.054,9.639C20.054,9.649 20.057,9.659 20.062,9.668C20.068,9.677 20.075,9.685 20.084,9.69C20.097,9.697 20.869,10.104 20.926,10.135C20.968,10.158 20.969,10.198 20.955,10.267C20.948,10.298 20.415,12.642 20.416,12.644C20.419,12.647 20.435,12.655 20.515,12.655L20.551,12.655C21.446,12.619 21.934,11.561 21.952,10.534C21.961,9.979 21.772,9.638 21.429,9.588L21.358,9.582L20.112,9.582Z"/></svg><span class="cinta__nombre" data-n="GSAP">GSAP</span></li>
+            <li style="--i:5"><svg class="cinta__logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="url(#chrome)" d="M12.51 13.214c.046-.8.438-1.506 1.03-2.006a3.424 3.424 0 0 1 2.212-.79c.85 0 1.631.3 2.211.79.592.5.983 1.206 1.028 2.005.045.823-.285 1.586-.865 2.153a3.389 3.389 0 0 1-2.374.938 3.393 3.393 0 0 1-2.376-.938c-.58-.567-.91-1.33-.865-2.152M7.35 14.831c.006.314.106.922.256 1.398a7.372 7.372 0 0 0 1.593 2.757 8.227 8.227 0 0 0 2.787 2.001 8.947 8.947 0 0 0 3.66.76 8.964 8.964 0 0 0 3.657-.772 8.285 8.285 0 0 0 2.785-2.01 7.428 7.428 0 0 0 1.592-2.762 6.964 6.964 0 0 0 .25-3.074 7.123 7.123 0 0 0-1.016-2.779 7.764 7.764 0 0 0-1.852-2.043h.002L13.566 2.55l-.02-.015c-.492-.378-1.319-.376-1.86.002-.547.382-.609 1.015-.123 1.415l-.001.001 3.126 2.543-9.53.01h-.013c-.788.001-1.545.518-1.695 1.172-.154.665.38 1.217 1.2 1.22V8.9l4.83-.01-8.62 6.617-.034.025c-.813.622-1.075 1.658-.563 2.313.52.667 1.625.668 2.447.004L7.414 14s-.069.52-.063.831zm12.09 1.741c-.97.988-2.326 1.548-3.795 1.55-1.47.004-2.827-.552-3.797-1.538a4.51 4.51 0 0 1-1.036-1.622 4.282 4.282 0 0 1 .282-3.519 4.702 4.702 0 0 1 1.153-1.371c.942-.768 2.141-1.183 3.396-1.185 1.256-.002 2.455.41 3.398 1.175.48.391.87.854 1.152 1.367a4.28 4.28 0 0 1 .522 1.706 4.236 4.236 0 0 1-.239 1.811 4.54 4.54 0 0 1-1.035 1.626"/></svg><span class="cinta__nombre" data-n="Blender">Blender</span></li>
+            <li style="--i:6"><svg class="cinta__logo cinta__logo--marca" viewBox="0 5.22 24 13.56" width="39" height="22" aria-hidden="true" focusable="false"><path fill="url(#chrome)" d="M23.154 9.357h-.205v.533h-.179v-.533h-.206v-.154h.59zm.08-.154h.263l.119.458h.002l.118-.458H24v.687h-.169v-.522h-.001l-.145.522h-.137l-.144-.522h-.002v.522h-.168zM9.671 16.29c-.742.832-2.001 1.293-4.483 1.208C2.094 16.427 0 14.366 0 11.998 0 8.53 4.497 5.72 10.043 5.721c3.621 0 6.788 1.263 8.555 3.061-1.619-1.073-4.052-1.691-6.767-1.691C6.959 7.091 3.01 9.289 3.01 12c0 1.7 1.552 3.198 3.911 4.079v-.001c.006.002.011.005.017.007.06.022.12.044.182.066.056.017.113.031.173.043.165.032.322.048.473.048q.45 0 .762-.156t.516-.429c.136-.183.234-.403.295-.661s.091-.544.091-.859v-.365h-.021c-.079.171-.179.32-.3.445q-.183.189-.414.312c-.154.082-.319.145-.494.188-.176.043-.349.064-.521.064-.416 0-.777-.075-1.085-.225-.308-.151-.566-.355-.774-.613-.207-.257-.363-.556-.467-.896s-.155-.7-.155-1.08c0-.329.042-.666.128-1.01.086-.343.229-.658.43-.945.2-.286.465-.521.795-.703.329-.183.734-.274 1.214-.274.35 0 .673.077.966.231.294.154.523.385.688.693h.01v-.795h.87v5.08c0 .909-.217 1.584-.629 2.046m-.375-3.689c.061-.258.091-.516.091-.774 0-.243-.028-.483-.085-.719-.058-.237-.149-.45-.274-.639-.126-.19-.289-.342-.489-.457-.201-.114-.444-.172-.73-.172-.294 0-.545.056-.752.167-.208.111-.378.259-.51.446-.133.186-.23.401-.291.644-.06.244-.091.498-.091.763 0 .25.025.501.075.751.05.251.136.479.258.683s.283.368.484.494c.2.125.451.188.751.188.301 0 .557-.063.768-.188.211-.126.382-.29.511-.494.128-.204.223-.435.284-.693m.798 4.213c.604.072 1.095.095 1.738.095 2.704 0 5.128-.607 6.746-1.673-1.771 1.785-4.93 3.044-8.537 3.043-.933 0-1.836-.079-2.693-.228 1.28-.214 2.22-.76 2.746-1.237m5.554-2.082h-1.311v-4.415h-1.644V9.194h4.599v1.123h-1.644zm3.637 0h-1.31V9.194h4.046v1.123h-2.736v1.036h2.395v1.123h-2.395zm-8.222-6.917h.913v6.902h-.913z"/></svg><span class="cinta__nombre" data-n="glTF">glTF</span></li>
+            <li style="--i:7"><svg class="cinta__logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="url(#chrome)" d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"/></svg><span class="cinta__nombre" data-n="React">React</span></li>
+            <li style="--i:8"><svg class="cinta__logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="url(#chrome)" d="M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727Zm-3.332-8.533 1.6 2.061V7.2h-1.6v6.245Z"/></svg><span class="cinta__nombre" data-n="Next.js">Next.js</span></li>
+            <li style="--i:9"><svg class="cinta__logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="url(#chrome)" d="m8.286 10.578.512-8.657a.306.306 0 0 1 .247-.282L17.377.006a.306.306 0 0 1 .353.385l-1.558 5.403a.306.306 0 0 0 .352.385l2.388-.46a.306.306 0 0 1 .332.438l-6.79 13.55-.123.19a.294.294 0 0 1-.252.14c-.177 0-.35-.152-.305-.369l1.095-5.301a.306.306 0 0 0-.388-.355l-1.433.435a.306.306 0 0 1-.389-.354l.69-3.375a.306.306 0 0 0-.37-.36l-2.32.536a.306.306 0 0 1-.374-.316zm14.976-7.926L17.284 3.74l-.544 1.887 2.077-.4a.8.8 0 0 1 .84.369.8.8 0 0 1 .034.783L12.9 19.93l-.013.025-.015.023-.122.19a.801.801 0 0 1-.672.37.826.826 0 0 1-.634-.302.8.8 0 0 1-.16-.67l1.029-4.981-1.12.34a.81.81 0 0 1-.86-.262.802.802 0 0 1-.165-.67l.63-3.08-2.027.468a.808.808 0 0 1-.768-.233.81.81 0 0 1-.217-.6l.389-6.57-7.44-1.33a.612.612 0 0 0-.64.906L11.58 23.691a.612.612 0 0 0 1.066-.004l11.26-20.135a.612.612 0 0 0-.644-.9z"/></svg><span class="cinta__nombre" data-n="Vite">Vite</span></li>
+            <li style="--i:10"><svg class="cinta__logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="url(#chrome)" d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/></svg><span class="cinta__nombre" data-n="TypeScript">TypeScript</span></li>
+            <li style="--i:11"><svg class="cinta__logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="url(#chrome)" d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z"/></svg><span class="cinta__nombre" data-n="Tailwind CSS">Tailwind CSS</span></li>
+            <li style="--i:12"><svg class="cinta__logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="url(#chrome)" d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z"/></svg><span class="cinta__nombre" data-n="Figma">Figma</span></li>
+            <li style="--i:13"><svg class="cinta__logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="url(#chrome)" d="M24 22.525H0l12-21.05 12 21.05z"/></svg><span class="cinta__nombre" data-n="Vercel">Vercel</span></li>
+            <li style="--i:14"><svg class="cinta__logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="url(#chrome)" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg><span class="cinta__nombre" data-n="GitHub">GitHub</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Frase (se enciende palabra a palabra con el scroll) ===== -->
+    <section class="frase" aria-labelledby="h-frase">
+      <div class="frase__fija">
+        <h2 class="display frase__texto" id="h-frase" data-frase><span data-c="inicio.frase.a">Si no eres visible,</span> <span class="frase__acento" data-c="inicio.frase.b">no existes.</span></h2>
+      </div>
+    </section>
+
+    <!-- ===== Panel gris: qué hacemos (bento) → trabajo selecto → la oficina (#oficina-slot) → con quién trabajamos ===== -->
+    <section class="panel" id="oficina" aria-label="Qué hacemos, trabajo selecto y con quién trabajamos">
+
+      <!-- 1. Qué hacemos: bento de 4 cards 3D (prototipo aprobado: evimes-cards/bento.html).
+           Textos: js/data/servicios.js (BORRADOR). Escenas: js/bento/. Estilos: css/bento.css. -->
+      <div class="que-hacemos" id="que-hacemos" role="group" aria-labelledby="qh">
+        <p class="label">Qué hacemos</p>
+        <h2 class="display" id="qh">Cuatro oficios. Un mismo nivel.</h2>
+
+        <div class="bento" data-bento>
+          <article class="card c-web" data-kind="web" data-servicio="web">
+            <canvas aria-hidden="true"></canvas>
+            <div class="num"><b>01</b> / 04</div><div class="hint" aria-hidden="true">PASA EL RATÓN</div>
+            <div class="meta"><div><h3 class="display">Desarrollo web</h3><p>Webs a medida, rápidas y hechas a mano. Sin plantillas.</p></div><a class="more" href="servicios.html#web" data-scramble aria-label="Ver más sobre Desarrollo web"><span class="sl">Ver más</span> →</a></div>
+          </article>
+          <article class="card c-3d" data-kind="star" data-servicio="3d">
+            <canvas aria-hidden="true"></canvas>
+            <div class="num"><b>02</b> / 04</div><div class="hint" aria-hidden="true">ARRÁSTRALO</div>
+            <div class="meta"><div><h3 class="display">Animaciones 3D</h3><p>Experiencias 3D y WebGL que la gente recuerda.</p></div><a class="more" href="servicios.html#3d" data-scramble aria-label="Ver más sobre Animaciones 3D"><span class="sl">Ver más</span> →</a></div>
+          </article>
+          <article class="card c-seo" data-kind="pin" data-servicio="seo">
+            <canvas aria-hidden="true"></canvas>
+            <div class="num"><b>03</b> / 04</div>
+            <div class="meta"><div><h3 class="display">Posicionamiento</h3><p>Que te encuentren en Google, en Maps y en las respuestas de la IA.</p></div><a class="more" href="servicios.html#seo" data-scramble aria-label="Ver más sobre Posicionamiento"><span class="sl">Ver más</span> →</a></div>
+          </article>
+          <article class="card c-ia" data-kind="ia" data-servicio="ia">
+            <canvas aria-hidden="true"></canvas>
+            <div class="num"><b>04</b> / 04</div><div class="hint" aria-hidden="true">ACÉRCATE</div>
+            <div class="meta"><div><h3 class="display">Software IA</h3><p>Agentes, bots y herramientas con IA que trabajan por ti.</p></div><a class="more" href="servicios.html#ia" data-scramble aria-label="Ver más sobre Software IA"><span class="sl">Ver más</span> →</a></div>
+          </article>
+        </div>
+      </div>
+
+      <!-- 2. Trabajo selecto + la oficina (#oficina-slot, track de 470vh): la ventana se abre desde una card,
+           EVIMES se enciende, la cámara va al monitor, la web de Disco sube como una card (con su PageSpeed)
+           y se vuelve a cerrar en card. Prototipo aprobado: Downloads/evimes-oficina/index.html.
+           Textos: js/data/oficina.js (BORRADOR) · proyecto y rutas: js/oficina/config.js
+           Escena: js/oficina/ · estilos: css/oficina.css -->
+      <div class="intro" id="trabajo" role="group" aria-labelledby="ts">
+        <p class="label" data-of="intro.label">Trabajo selecto</p>
+        <h2 class="display" id="ts" data-of="intro.titulo">Webs que dan que hablar.</h2>
+        <p data-of="intro.texto">Pasa. Siéntate en nuestra mesa y mira lo que sale de la pantalla.</p>
+        <p class="intro__mas"><a class="enlace" href="proyectos.html" data-scramble><span class="sl">Ver todos los proyectos</span> →</a></p>
+      </div>
+
+      <div class="track" id="oficina-slot" data-oficina>
+        <div class="stage">
+          <div class="window" id="win">
+            <picture class="espera" aria-hidden="true">
+              <source media="(max-aspect-ratio: 9/10)" srcset="assets/oficina/oficina-espera-movil.webp">
+              <img src="assets/oficina/oficina-espera.webp" alt="" width="480" height="270" decoding="async">
+            </picture>
+            <canvas aria-hidden="true"></canvas>
+            <div class="scrim"></div>
+            <div class="cap" data-cap="1"><p class="k" data-of="cap1.k">El estudio</p><h3 class="display" data-of="cap1.titulo">Aquí se hacen.</h3><p data-of="cap1.texto">Una oficina pequeña en Madrid, gente que diseña y programa cada web a mano.</p></div>
+            <div class="cap" data-cap="2"><p class="k" data-of="cap2.k">Trabajo selecto · 01</p><h3 class="display" data-of="cap2.titulo">Disco <span class="accent">Producción</span></h3><p data-of="cap2.texto">Productora audiovisual en Madrid. Su web ya está dando que hablar.</p>
+              <a class="btn" href="https://discoproduccion.com" target="_blank" rel="noopener" data-scramble aria-label="Ver la web de Disco Producción (abre en una pestaña nueva)"><span class="sl" data-of="cap2.boton">Ver la web</span> <i aria-hidden="true">→</i></a></div>
+            <div class="hud" aria-hidden="true" data-of="hud">Desliza</div>
+            <!-- PageSpeed de la web de Disco (js/data/pagespeed.js): 4 indicadores + píldora, colocados junto a la card -->
+            <div class="psi" data-psi role="img" aria-label="PageSpeed Insights de discoproduccion.com"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Con quién trabajamos (última sección del gris). Prototipo aprobado: evimes-cards/con-quien.html.
+           Textos: js/data/clientes.js (BORRADOR; js/gris/clientes.js repinta los paneles desde ahí).
+           Estilos: css/con-quien.css. Sin JS se ven los dos casos, uno debajo del otro. -->
+      <section class="cq" id="con-quien" aria-labelledby="cq-label" data-cq>
+        <div class="top">
+          <p class="label" id="cq-label">Con quién trabajamos</p>
+          <div class="switch" role="radiogroup" aria-label="Elige tu caso" data-v="0" data-cq-switch></div>
+        </div>
+        <div class="cq-stage" data-cq-stage>
+            <div class="cq-p" data-p="0">
+              <h2 class="display">
+                <span class="l"><span>Tenéis la idea.</span></span>
+                <span class="l"><span>Nosotros la creamos.</span></span>
+                <span class="l"><span class="soft">Solo nos falta tu <span class="mark">sí</span>.</span></span>
+              </h2>
+              <div class="side">
+                <p>Somos el estudio técnico de agencias creativas e innovadoras. Webs 3D, WebGL e interacción a medida, con vuestra marca y a vuestro ritmo.</p>
+                <a class="cta" href="#contacto" data-scramble><span class="sl">Hablemos de un proyecto</span> <i aria-hidden="true">→</i></a>
+              </div>
+              <div class="points">
+                <div class="pt"><b>01</b><h3>Marca blanca</h3><p>Lo presentáis como vuestro. Nosotros, detrás.</p></div>
+                <div class="pt"><b>02</b><h3>3D y WebGL a medida</h3><p>Lo que otros no se atreven a programar.</p></div>
+                <div class="pt"><b>03</b><h3>Plazos claros</h3><p>Sabéis qué llega y cuándo, desde el primer día.</p></div>
+              </div>
+            </div>
+            <div class="cq-p" data-p="1">
+              <h2 class="display">
+                <span class="l"><span>Más visitas.</span></span>
+                <span class="l"><span>Más reservas.</span></span>
+                <span class="l"><span>Más <span class="mark">ventas</span>.</span></span>
+              </h2>
+              <div class="side">
+                <p>Restaurantes, barberías y comercios de Madrid con una web que trabaja por ellos, también cuando está cerrado.</p>
+                <a class="cta" href="#contacto" data-scramble><span class="sl">Pide tu propuesta</span> <i aria-hidden="true">→</i></a>
+              </div>
+              <div class="points">
+                <div class="pt"><b>01</b><h3>Web rápida</h3><p>Carga al instante, también en el móvil.</p></div>
+                <div class="pt"><b>02</b><h3>Google y Maps</h3><p>Que te encuentren cuando te buscan cerca.</p></div>
+                <div class="pt"><b>03</b><h3>Reservas y WhatsApp</h3><p>Del "me interesa" al cliente, en un clic.</p></div>
+              </div>
+            </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ===== Planes ===== -->
+    <section class="planes" id="planes" aria-labelledby="h-planes">
+      <div class="planes__cab">
+        <h2 class="display planes__titulo" id="h-planes" data-c="inicio.planes.titulo">Un plan para cada negocio.</h2>
+        <p class="planes__intro" data-c="inicio.planes.intro">Sin letra pequeña.</p>
+      </div>
+      <ol class="planes__lista" data-planes></ol>
+      <p class="planes__mas"><a class="enlace" href="planes.html" data-scramble><span class="sl" data-c="inicio.planes.verTodo">Ver qué incluye cada plan</span> →</a></p>
+    </section>
+
+    <!-- ===== Contacto: formulario (Web3Forms; la clave va en js/config.js → WEB3FORMS_KEY). JS: js/contacto/form.js · CSS: css/contacto.css ===== -->
+    <section class="contacto" id="contacto" aria-labelledby="h-contacto">
+      <div class="contacto__cab">
+        <h2 class="display contacto__titulo" id="h-contacto" data-c="inicio.contacto.titulo">¿Hacemos que se te vea?</h2>
+        <p class="contacto__intro">Cuéntanos qué necesitas. Te respondemos con una propuesta clara.</p>
+        <p class="contacto__mas"><a class="enlace" href="contacto.html#despues" data-scramble><span class="sl">Qué pasa después de escribirnos</span> →</a></p>
+        <p class="contacto__directo" data-directo hidden>
+          <a data-whatsapp href="#" target="_blank" rel="noopener" hidden>WhatsApp</a>
+          <a data-email href="#" hidden></a>
+          <a data-telefono href="#" hidden></a>
+        </p>
+      </div>
+
+      <div class="contacto__form" data-form-caja>
+        <form class="form" data-form novalidate aria-describedby="form-nota">
+          <!-- trampa para bots (Web3Forms): oculta para personas y lectores de pantalla -->
+          <input class="form__hp" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="campo">
+            <input class="campo__input" id="f-nombre" name="nombre" type="text" autocomplete="name" required placeholder=" " aria-describedby="f-nombre-err">
+            <label class="campo__label" for="f-nombre">Nombre <span aria-hidden="true">*</span></label>
+            <span class="campo__linea" aria-hidden="true"></span>
+            <p class="campo__error" id="f-nombre-err"></p>
+          </div>
+          <div class="campo">
+            <input class="campo__input" id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required placeholder=" " aria-describedby="f-email-err">
+            <label class="campo__label" for="f-email">Email <span aria-hidden="true">*</span></label>
+            <span class="campo__linea" aria-hidden="true"></span>
+            <p class="campo__error" id="f-email-err"></p>
+          </div>
+          <div class="campo">
+            <input class="campo__input" id="f-telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" placeholder=" " aria-describedby="f-telefono-err">
+            <label class="campo__label" for="f-telefono">Teléfono <span class="campo__opc">(opcional)</span></label>
+            <span class="campo__linea" aria-hidden="true"></span>
+            <p class="campo__error" id="f-telefono-err"></p>
+          </div>
+
+          <fieldset class="grupo">
+            <legend class="grupo__legend">Soy…</legend>
+            <div class="grupo__chips">
+              <label class="chip"><input type="radio" name="perfil" value="Agencia creativa"><span>Agencia creativa</span></label>
+              <label class="chip"><input type="radio" name="perfil" value="Negocio local"><span>Negocio local</span></label>
+              <label class="chip"><input type="radio" name="perfil" value="Otro"><span>Otro</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="grupo">
+            <legend class="grupo__legend">Plan que te interesa</legend>
+            <div class="grupo__chips">
+              <label class="chip"><input type="radio" name="plan" value="fundamento"><span>Fundamento</span></label>
+              <label class="chip"><input type="radio" name="plan" value="inmersion"><span>Inmersión</span></label>
+              <label class="chip"><input type="radio" name="plan" value="impacto"><span>Impacto</span></label>
+              <label class="chip"><input type="radio" name="plan" value="aun-no"><span>Aún no lo sé</span></label>
+            </div>
+          </fieldset>
+
+          <div class="campo campo--area">
+            <textarea class="campo__input" id="f-mensaje" name="mensaje" rows="4" required placeholder=" " aria-describedby="f-mensaje-err"></textarea>
+            <label class="campo__label" for="f-mensaje">Mensaje <span aria-hidden="true">*</span></label>
+            <span class="campo__linea" aria-hidden="true"></span>
+            <p class="campo__error" id="f-mensaje-err"></p>
+          </div>
+
+          <div class="casilla">
+            <input id="f-privacidad" name="privacidad" type="checkbox" required aria-describedby="f-privacidad-err">
+            <label for="f-privacidad">He leído y acepto la <a href="privacidad.html">política de privacidad</a>. <span aria-hidden="true">*</span></label>
+            <p class="campo__error" id="f-privacidad-err"></p>
+          </div>
+
+          <div class="form__pie">
+            <button class="pastilla pastilla--grande form__enviar" type="submit" data-scramble><span class="sl">Enviar</span></button>
+            <p class="form__nota" id="form-nota">Los campos con * son obligatorios.</p>
+          </div>
+          <div class="form__estado" data-form-estado role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Pie ===== -->
+  <footer class="pie">
+    <p data-c="inicio.pie.firma">© 2026 Evimes · Madrid</p>
+    <nav aria-label="Textos legales">
+      <ul class="pie__legales">
+        <li><a href="aviso-legal.html">Aviso legal</a></li>
+        <li><a href="terminos.html">Términos</a></li>
+        <li><a href="privacidad.html">Privacidad</a></li>
+        <li><a href="cookies.html">Cookies</a></li>
+      </ul>
+    </nav>
+  </footer>
+
+  <!-- Librerías (diferidas). Three.js 0.160.0 lo importa js/fondo/onda.js tras la carga. -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/content.js"></script>
+  <script defer src="js/data/planes.js"></script>
+  <script defer src="js/data/servicios.js"></script>
+  <script defer src="js/data/oficina.js"></script>
+  <script defer src="js/data/pagespeed.js"></script>
+  <script defer src="js/data/clientes.js"></script>
+  <script defer src="js/brand.js"></script>
+  <script defer src="js/engine/util.js"></script>
+  <script defer src="js/fondo/rayos.js"></script>
+  <script defer src="js/fondo/onda.js"></script>
+  <script defer src="js/home.js"></script>
+  <script defer src="js/gris/clientes.js"></script>
+  <script defer src="js/contacto/form.js"></script>
+  <!-- Bento: módulo ES; Three.js 0.160.0 (la misma URL que la onda) se importa al acercarse al bento. -->
+  <script type="module" src="js/bento/index.js"></script>
+  <!-- La oficina: módulo ES; Three.js 0.160.0 y el panorama se cargan a una pantalla de distancia. -->
+  <script type="module" src="js/oficina/index.js"></script>
+  <script type="module" src="js/ui/scramble.js"></script>
+</body>
+</html>

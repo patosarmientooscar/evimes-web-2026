@@ -1,0 +1,108 @@
+/* ==========================================================================
+   Motor: canvas de escena, zona pinned, scrim local, cuadriláteros (matrix3d),
+   herramientas ?ajustar=…
+   ========================================================================== */
+
+/* Un único canvas fijo para el panorama */
+.scene {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;          /* no se redimensiona al ocultarse la barra en móvil */
+  z-index: var(--z-canvas);
+  display: block;
+  pointer-events: none;
+  background: var(--navy);
+}
+
+.zones { position: relative; z-index: var(--z-stage); }
+.zone { position: relative; }
+.zone__stage {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+.is-cine .zone__stage { visibility: hidden; }
+.is-cine .zone.is-active .zone__stage { visibility: visible; }
+
+/* Contenedor de capas con márgenes de página */
+.layer {
+  position: absolute;
+  inset: var(--header-h) var(--gutter) var(--gutter);
+}
+
+/* ——— Scrim local (detrás de cada bloque de texto) ———
+   El alfa máximo (55 %) va en el degradado; la intensidad real es opacity. */
+.scrim {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+.scrim--radial {
+  background: radial-gradient(closest-side,
+    rgb(8 11 20 / 0.55) 0%, rgb(8 11 20 / 0.535) 35%, rgb(8 11 20 / 0.45) 55%,
+    rgb(8 11 20 / 0.3) 70%, rgb(8 11 20 / 0.165) 82%, rgb(8 11 20 / 0.055) 92%, rgb(8 11 20 / 0) 100%);
+}
+.scrim--left, .scrim--right {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--fade, 48px), #000 calc(100% - var(--fade, 48px)), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 var(--fade, 48px), #000 calc(100% - var(--fade, 48px)), transparent 100%);
+}
+.scrim--left  { background: linear-gradient(to right, rgb(8 11 20 / 0.55) 0%, rgb(8 11 20 / 0.55) var(--stop, 60%), rgb(8 11 20 / 0) 100%); }
+.scrim--right { background: linear-gradient(to left,  rgb(8 11 20 / 0.55) 0%, rgb(8 11 20 / 0.55) calc(100% - var(--stop, 40%)), rgb(8 11 20 / 0) 100%); }
+.scrim--radial.scrim--claro {
+  background: radial-gradient(closest-side,
+    rgb(240 236 228 / 0.55) 0%, rgb(240 236 228 / 0.535) 35%, rgb(240 236 228 / 0.45) 55%,
+    rgb(240 236 228 / 0.3) 70%, rgb(240 236 228 / 0.165) 82%, rgb(240 236 228 / 0.055) 92%, rgb(240 236 228 / 0) 100%);
+}
+
+/* ——— Cuadrilátero en perspectiva (matrix3d sobre 4 esquinas) ——— */
+.quad {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+  backface-visibility: hidden;
+  will-change: transform;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ——— ?ajustar=oficina ——— */
+.ajuste__panel {
+  position: fixed;
+  right: var(--gutter);
+  bottom: var(--gutter);
+  z-index: var(--z-dialog);
+  max-width: min(32rem, calc(100% - 2 * var(--gutter)));
+  padding: var(--space-4);
+  background: var(--navy-raised);
+  color: var(--ink);
+  font-size: var(--step--1);
+}
+.ajuste__titulo { font-weight: 600; margin-bottom: var(--space-2); }
+.ajuste__json { white-space: pre-wrap; word-break: break-all; font: 12px/1.5 ui-monospace, monospace; color: var(--ink-muted); margin: 0 0 var(--space-2); user-select: all; }
+.ajuste__estado { color: var(--ink-faint); margin-bottom: var(--space-3); }
+.ajuste__acciones { display: flex; gap: var(--space-3); }
+.ajuste__acciones button { appearance: none; background: none; border: 1px solid var(--line-strong); color: var(--stone); font: inherit; padding: var(--space-2) var(--space-3); cursor: pointer; }
+.sala-ajuste { position: fixed; inset: 0; z-index: var(--z-dialog); pointer-events: none; }
+.sala-ajuste.is-on { pointer-events: auto; cursor: grab; }
+.sala-ajuste.is-on:active { cursor: grabbing; }
+.sala-ajuste .ajuste__panel { pointer-events: auto; }
+.sala-ajuste__mira { position: absolute; left: 50%; top: 50%; width: 22px; height: 22px; margin: -11px 0 0 -11px; border: 1px solid var(--cyan); border-radius: 50%; display: none; }
+.sala-ajuste.is-on .sala-ajuste__mira { display: block; }
+.sala-ajuste__marcas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.sala-ajuste__marcas path { stroke: var(--cyan); stroke-width: 1; fill: none; }
+.sala-ajuste__marcas text { fill: var(--cyan); font: 11px/1 var(--font-text); }
+
+/* ——— Modo "imágenes fijas" (movimiento reducido, conexión lenta o sin WebGL) ——— */
+.is-still .scene { display: none; }
+.is-still .zone__stage { visibility: visible; height: auto; overflow: visible; }
+.is-still .quad { display: none; }

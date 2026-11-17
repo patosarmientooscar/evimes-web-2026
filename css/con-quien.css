@@ -1,0 +1,92 @@
+/* ==========================================================================
+   con-quien.css — "Con quién trabajamos", última sección del panel gris.
+   Portado tal cual del prototipo aprobado (Downloads/evimes-cards/con-quien.html):
+   mismos valores, tiempos, curvas y sombras. Solo cambia la estructura:
+   todo va dentro de .cq (las clases .panel y .stage del prototipo chocaban
+   con las del proyecto: aquí son .cq-p y .cq-stage) y el margen lateral lo
+   pone el panel gris, igual que en el bento.
+   Contraste: el gris del prototipo (.58) daba 4,3:1 y la línea suave (.42)
+   2,7:1 sobre #e6e4df; aquí .62 (4,9:1) y .5 (3,4:1, titular grande).
+   Textos: js/data/clientes.js · comportamiento: js/gris/clientes.js
+   ========================================================================== */
+.cq {
+  --cq-ink: #0b1020;
+  --cq-muted: rgba(11,16,32,.62);
+  --cq-line: rgba(11,16,32,.14);
+  --cq-cyan: #00e5ff;
+  --cq-ease: cubic-bezier(.2,.75,.15,1);
+  padding: clamp(90px,16vh,180px) 0 clamp(26px,4vh,40px);   /* + el padding del panel (64–120) = los 90–160 de abajo del prototipo */
+  max-width: 1480px;
+  color: var(--cq-ink);
+  font-family: var(--font-text);
+  font-size: 16px;
+  line-height: normal;
+}
+.cq h2, .cq h3, .cq p { margin: 0; text-wrap: wrap; }
+.cq .display { letter-spacing: -.025em; }
+
+.cq .top { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+.cq .label { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--cq-muted); }
+
+/* small switch: a pill with a sliding chrome thumb */
+.cq .switch { position: relative; display: inline-grid; grid-template-columns: 1fr 1fr; padding: 4px; border-radius: 999px; background: rgba(11,16,32,.06);
+  box-shadow: inset 0 1px 2px rgba(11,16,32,.08), inset 0 0 0 1px rgba(11,16,32,.06); }
+.cq .switch button { position: relative; z-index: 1; appearance: none; border: 0; background: none; font: 500 13px/1 var(--font-text); letter-spacing: .01em;
+  color: var(--cq-muted); padding: 10px 16px; border-radius: 999px; cursor: pointer; white-space: nowrap; transition: color .4s var(--cq-ease); }
+.cq .switch button[aria-checked="false"] { color: rgba(11,16,32,.68); }   /* sobre el carril (6 % más oscuro) .62 daba 4,6:1 justo; .68 ≈ 5,4:1 */
+.cq .switch button[aria-checked="true"] { color: var(--cq-ink); }
+.cq .switch button:focus-visible { outline: 2px solid var(--cq-ink); outline-offset: 2px; }
+.cq .switch .thumb { position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px); border-radius: 999px; transition: transform .55s var(--cq-ease);
+  background: linear-gradient(180deg, #ffffff 0%, #eef1f5 38%, #cdd4de 52%, #f4f6f9 70%, #dfe4ea 100%);
+  box-shadow: 0 1px 0 rgba(255,255,255,.9) inset, 0 -1px 0 rgba(11,16,32,.08) inset, 0 2px 6px rgba(11,16,32,.14), 0 0 0 1px rgba(11,16,32,.06); }
+.cq .switch[data-v="1"] .thumb { transform: translateX(100%); }
+
+.cq-stage { position: relative; margin-top: clamp(40px,7vh,72px); }
+.cq-p { display: grid; grid-template-columns: repeat(12,1fr); column-gap: clamp(16px,2vw,32px); row-gap: clamp(40px,7vh,72px); }
+.cq-p[hidden] { display: none; }
+.cq-p.out { position: absolute; inset: 0 0 auto 0; pointer-events: none; }
+
+.cq h2 { grid-column: 1/span 9; font-size: clamp(46px,7.4vw,124px); line-height: .96; position: relative; z-index: 0; }
+.cq h2 .l { display: block; overflow: hidden; padding-bottom: .08em; margin-bottom: -.08em; }
+.cq h2 .l > span { display: inline-block; }
+/* Estado inicial oculto solo con JS (sin JS, el titular se ve). */
+.cq.js h2 .l > span { transform: translateY(105%); transition: transform .9s var(--cq-ease); }
+.cq.js .on h2 .l > span { transform: none; }
+.cq.js .out h2 .l > span { transform: translateY(-105%); transition-duration: .55s; }
+.cq h2 .soft { color: rgba(11,16,32,.5); }
+/* a hand-set cyan underline that draws itself */
+.cq .mark { position: relative; white-space: nowrap; }
+.cq .mark::after { content: ""; position: absolute; left: -.04em; right: -.04em; bottom: .04em; height: .16em; border-radius: .08em; background: var(--cq-cyan); z-index: -1; }
+.cq.js .mark::after { transform: scaleX(0); transform-origin: left; transition: transform .8s var(--cq-ease) .75s; }
+.cq.js .on .mark::after { transform: scaleX(1); }
+.cq.js .out .mark::after { transform: scaleX(0); transform-origin: right; transition-delay: 0s; transition-duration: .4s; }
+
+.cq .side { grid-column: 10/span 3; align-self: end; display: flex; flex-direction: column; gap: 26px; }
+.cq.js .side { opacity: 0; transform: translateY(16px); transition: opacity .8s var(--cq-ease) .35s, transform .8s var(--cq-ease) .35s; }
+.cq.js .on .side { opacity: 1; transform: none; }
+.cq.js .out .side { opacity: 0; transform: translateY(-10px); transition-delay: 0s; transition-duration: .35s; }
+.cq .side p { font-size: clamp(15px,1.15vw,18px); line-height: 1.55; color: var(--cq-muted); }
+.cq .cta { display: inline-flex; align-items: center; gap: 12px; align-self: flex-start; padding: 15px 24px; border-radius: 999px; background: var(--cq-ink); color: #ece7dd; text-decoration: none; font-size: 15px; font-weight: 500;
+  transition: transform .4s var(--cq-ease), box-shadow .4s var(--cq-ease); }
+.cq .cta i { font-style: normal; display: inline-block; transition: transform .4s var(--cq-ease); }
+.cq .cta:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -14px rgba(11,16,32,.55); }
+.cq .cta:hover i { transform: translateX(4px); }
+
+.cq .points { grid-column: 1/-1; display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid var(--cq-line); }
+.cq .pt { padding: 26px clamp(0px,2vw,28px) 0 0; }
+.cq.js .pt { opacity: 0; transform: translateY(14px); transition: opacity .7s var(--cq-ease), transform .7s var(--cq-ease); }
+.cq .pt + .pt { padding-left: clamp(16px,2vw,28px); border-left: 1px solid var(--cq-line); }
+.cq.js .on .pt { opacity: 1; transform: none; }
+.cq.js .on .pt:nth-child(1) { transition-delay: .5s; }
+.cq.js .on .pt:nth-child(2) { transition-delay: .58s; }
+.cq.js .on .pt:nth-child(3) { transition-delay: .66s; }
+.cq.js .out .pt { opacity: 0; transition-duration: .3s; }
+.cq .pt b { display: block; font: 500 12px/1 var(--font-text); letter-spacing: .16em; color: var(--cq-muted); }
+.cq .pt h3 { margin-top: 14px; font-family: var(--display); font-weight: 600; font-size: clamp(20px,1.7vw,26px); line-height: normal; letter-spacing: -.015em; font-variation-settings: "opsz" 72; }
+.cq .pt p { margin-top: 8px; font-size: 15px; line-height: 1.5; color: var(--cq-muted); max-width: 30ch; }
+
+@media (max-width: 900px) {
+  .cq h2 { grid-column: 1/-1; } .cq .side { grid-column: 1/-1; }
+  .cq .points { grid-template-columns: 1fr; } .cq .pt + .pt { padding-left: 0; border-left: 0; border-top: 1px solid var(--cq-line); } .cq .pt { padding: 22px 0; }
+}
+@media (prefers-reduced-motion: reduce) { .cq *, .cq *::before, .cq *::after { transition: none !important; } }

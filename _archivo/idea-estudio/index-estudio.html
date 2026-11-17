@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Evimes | Estudio de diseño web, producto y software en Madrid</title>
+  <meta name="description" content="Evimes, estudio de diseño web, producto y software con IA en Madrid. Webs, productos digitales y software para negocios que quieren que les elijan.">
+
+  <!-- Primer fotograma (LCP): misma regla de variante que el motor y que <picture> -->
+  <link rel="preload" as="image" type="image/avif" fetchpriority="high"
+        href="assets/zones/01-fachada/desktop/keyframe.avif"
+        imagesrcset="assets/zones/01-fachada/desktop/keyframe.avif 2560w" imagesizes="100vw"
+        media="(min-width: 768px) and (orientation: landscape)">
+  <link rel="preload" as="image" type="image/avif" fetchpriority="high"
+        href="assets/zones/01-fachada/mobile/keyframe.avif"
+        imagesrcset="assets/zones/01-fachada/mobile/keyframe.avif 1080w" imagesizes="100vw"
+        media="(max-width: 767px), (orientation: portrait)">
+  <link rel="preload" href="assets/logo/evimes-eh.svg" as="fetch" crossorigin="anonymous">
+  <link rel="preload" href="assets/logo/evimes-wordmark.svg" as="fetch" crossorigin="anonymous">
+
+  <link rel="canonical" href="https://www.evimesweb.com/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#080b14">
+  <meta name="robots" content="index, follow">
+  <meta name="geo.region" content="ES-MD">
+  <meta name="geo.placename" content="Madrid">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Evimes">
+  <meta property="og:url" content="https://www.evimesweb.com/">
+  <meta property="og:title" content="Evimes | Estudio de diseño web, producto y software en Madrid">
+  <meta property="og:description" content="Webs, productos digitales y software con IA para negocios que quieren que se les vea, y que les elijan. Tu esencia, digital.">
+  <meta property="og:image" content="https://www.evimesweb.com/assets/og/evimes-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fachada de un edificio señorial de Madrid a la hora azul, con las letras EVIMES retroiluminadas junto a una ventana encendida.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Evimes | Estudio de diseño web, producto y software en Madrid">
+  <meta name="twitter:description" content="Webs, productos digitales y software con IA en Madrid. Tu esencia, digital.">
+  <meta name="twitter:image" content="https://www.evimesweb.com/assets/og/evimes-og.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://www.evimesweb.com/#estudio",
+    "name": "Evimes",
+    "slogan": "Tu esencia, digital.",
+    "description": "Estudio de diseño web, producto y software con IA en Madrid. Creamos webs, productos digitales y software para negocios que quieren que se les vea, y que les elijan.",
+    "url": "https://www.evimesweb.com/",
+    "logo": "https://www.evimesweb.com/apple-touch-icon.png",
+    "image": "https://www.evimesweb.com/assets/og/evimes-og.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Cardenal Herrera Oria 171",
+      "addressLocality": "Madrid",
+      "addressRegion": "Comunidad de Madrid",
+      "postalCode": "28034",
+      "addressCountry": "ES"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Madrid" },
+      { "@type": "Country", "name": "España" }
+    ],
+    "serviceType": ["Diseño web", "Product design", "Software a medida", "Inteligencia artificial", "Automatización", "SEO", "Local SEO", "AEO", "GEO", "Google Ads", "Analytics"],
+    "knowsAbout": ["Diseño web", "UX/UI", "Landing pages", "Branding digital", "E-commerce", "User research", "Prototipado", "APIs e integraciones", "Automatización con IA"],
+    "priceRange": "€€",
+    "openingHours": "Mo-Fr 09:00-18:00"
+  }
+  </script>
+
+  <!-- Decide modo cine / imágenes fijas antes de pintar -->
+  <script src="js/engine/fallback.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Schibsted+Grotesk:wght@400;500;600&display=swap">
+
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { navy: '#080b14', cyan: '#00e5ff', stone: '#e9e3d8', oak: '#b8875a', camel: '#b48a5e', graphite: '#2b2e35' },
+          fontFamily: { display: ['"Libre Baskerville"', 'Georgia', 'serif'], text: ['"Schibsted Grotesk"', 'system-ui', 'sans-serif'] }
+        }
+      }
+    };
+  </script>
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/zones.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <canvas class="scene" aria-hidden="true"></canvas>
+  <!-- Fachada: foto fija (LCP, se ve sin JS). La cámara mueve este contenedor
+       entero; letras, hojas de la ventana e interior viven dentro. -->
+  <div class="fachada-cam">
+    <picture class="poster" data-poster="fachada">
+      <source media="(max-width: 767px), (orientation: portrait)" type="image/avif" srcset="assets/zones/01-fachada/mobile/keyframe.avif">
+      <source media="(max-width: 767px), (orientation: portrait)" type="image/webp" srcset="assets/zones/01-fachada/mobile/keyframe.webp">
+      <source type="image/avif" srcset="assets/zones/01-fachada/desktop/keyframe.avif">
+      <img src="assets/zones/01-fachada/desktop/keyframe.webp" width="2560" height="1434" fetchpriority="high" decoding="async"
+           alt="Fachada de un edificio señorial de Madrid a la hora azul, con una ventana encendida en la planta noble.">
+    </picture>
+  </div>
+  <div class="curtain" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ================= Cabecera fija ================= -->
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Evimes, inicio" data-logo="header"></a>
+
+    <nav class="header-actions" aria-label="Principal">
+      <button class="ui-btn btn-plan" type="button" aria-haspopup="dialog" aria-controls="plano" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+          <rect x="1.5" y="1.5" width="15" height="15"/>
+          <path d="M7.5 1.5v15M7.5 9h9"/>
+          <rect class="plan-icon__room" x="10" y="11.5" width="4" height="3"/>
+        </svg>
+        <span class="btn-plan__label">Plano</span>
+        <span class="btn-plan__room" data-room aria-live="off">Fachada</span>
+      </button>
+
+      <button class="ui-btn btn-sound" type="button" aria-pressed="false" aria-label="Activar sonido" title="Sonido">
+        <svg width="17" height="14" viewBox="0 0 17 14" aria-hidden="true">
+          <rect class="bar" x="1.5"  y="0" width="1.2" height="14" fill="currentColor"/>
+          <rect class="bar" x="5.9"  y="0" width="1.2" height="14" fill="currentColor"/>
+          <rect class="bar" x="10.3" y="0" width="1.2" height="14" fill="currentColor"/>
+          <rect class="bar" x="14.7" y="0" width="1.2" height="14" fill="currentColor"/>
+        </svg>
+      </button>
+
+      <a class="ui-btn btn-cta" href="contacto.html">
+        <span>Empieza tu proyecto</span>
+        <span class="btn-cta__fill" aria-hidden="true">Empieza tu proyecto</span>
+      </a>
+    </nav>
+  </header>
+
+  <!-- ================= Plano (navegación) ================= -->
+  <dialog class="plan" id="plano" aria-labelledby="plano-titulo" data-lenis-prevent>
+    <div class="plan__inner">
+      <div class="plan__bar">
+        <h2 class="plan__title" id="plano-titulo">Plano</h2>
+        <button class="ui-btn plan__close" type="button">Cerrar</button>
+      </div>
+
+      <div class="plan__body">
+        <div class="plan__drawing">
+          <svg viewBox="0 0 600 830" role="img" aria-label="Plano de la planta: fachada, pasillo, tres salas de cristal, arcade y balcón">
+            <defs>
+              <pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                <line class="hatch" x1="0" y1="0" x2="0" y2="5"/>
+              </pattern>
+            </defs>
+
+            <!-- Salas (zonas de clic). El pasillo va primero: queda debajo. -->
+            <g class="room" data-goto="pasillo" data-cx="166" data-cy="180">
+              <path class="room-hit" d="M253 718V230H72V142H528V230H347V718Z"/>
+              <path class="room-fill" d="M253 718V230H72V142H528V230H347V718Z"/>
+              <text class="room-label" x="166" y="176" text-anchor="middle">Pasillo</text>
+              <text class="room-label room-label--small" x="166" y="194" text-anchor="middle">Planta noble</text>
+            </g>
+            <g class="room" data-goto="diseno-web" data-cx="162" data-cy="600">
+              <rect class="room-hit" x="72" y="480" width="178" height="238"/>
+              <rect class="room-fill" x="72" y="480" width="178" height="238"/>
+              <text class="room-label" x="162" y="596" text-anchor="middle">Diseño Web</text>
+              <text class="room-label room-label--small" x="162" y="614" text-anchor="middle">Sala I</text>
+            </g>
+            <g class="room" data-goto="product-design" data-cx="438" data-cy="600">
+              <rect class="room-hit" x="350" y="480" width="178" height="238"/>
+              <rect class="room-fill" x="350" y="480" width="178" height="238"/>
+              <text class="room-label" x="438" y="596" text-anchor="middle">Product Design</text>
+              <text class="room-label room-label--small" x="438" y="614" text-anchor="middle">Sala II</text>
+            </g>
+            <g class="room" data-goto="software-ai" data-cx="162" data-cy="355">
+              <rect class="room-hit" x="72" y="230" width="178" height="250"/>
+              <rect class="room-fill" x="72" y="230" width="178" height="250"/>
+              <text class="room-label" x="162" y="351" text-anchor="middle">Software &amp; AI</text>
+              <text class="room-label room-label--small" x="162" y="369" text-anchor="middle">Sala III</text>
+            </g>
+            <g class="room" data-goto="arcade" data-cx="438" data-cy="355">
+              <rect class="room-hit" x="350" y="230" width="178" height="250"/>
+              <rect class="room-fill" x="350" y="230" width="178" height="250"/>
+              <text class="room-label" x="438" y="351" text-anchor="middle">Arcade</text>
+              <text class="room-label room-label--small" x="438" y="369" text-anchor="middle">Sala de juego</text>
+            </g>
+            <g class="room" data-goto="balcon" data-cx="300" data-cy="62">
+              <rect class="room-hit" x="200" y="30" width="200" height="100"/>
+              <rect class="room-fill" x="220" y="74" width="160" height="56"/>
+              <text class="room-label" x="300" y="58" text-anchor="middle">Balcón</text>
+            </g>
+            <g class="room" data-goto="fachada" data-cx="160" data-cy="766">
+              <rect class="room-hit" x="40" y="732" width="520" height="90"/>
+              <rect class="room-fill" x="60" y="732" width="480" height="70"/>
+              <text class="room-label" x="160" y="766" text-anchor="middle">Fachada</text>
+              <text class="room-label room-label--small" x="160" y="784" text-anchor="middle">Calle</text>
+            </g>
+
+            <!-- Muros de carga (doble línea + rayado) -->
+            <path d="M60 130H540V730H60Z M72 142V718H528V142Z" fill="url(#hatch)" fill-rule="evenodd" pointer-events="none"/>
+            <rect class="wall" x="60" y="130" width="480" height="600" pointer-events="none"/>
+            <rect class="wall-thin" x="72" y="142" width="456" height="576" pointer-events="none"/>
+
+            <g pointer-events="none">
+              <!-- Ventanas de fachada (la central es la de entrada) -->
+              <g fill="#0e1220">
+                <rect x="110" y="716" width="60" height="16"/>
+                <rect x="270" y="716" width="60" height="16"/>
+                <rect x="430" y="716" width="60" height="16"/>
+                <rect x="270" y="128" width="60" height="16"/>
+              </g>
+              <g class="wall-thin">
+                <path d="M110 718H170M110 724H170M110 730H170"/>
+                <path d="M270 718H330M270 724H330M270 730H330"/>
+                <path d="M430 718H490M430 724H490M430 730H490"/>
+                <path d="M110 716V732M170 716V732M270 716V732M330 716V732M430 716V732M490 716V732"/>
+                <!-- puerta balconera -->
+                <path d="M270 130V142M330 130V142"/>
+                <path d="M270 142A30 30 0 0 1 300 172M330 142A30 30 0 0 0 300 172"/>
+              </g>
+
+              <!-- Balcón: losa y barandilla -->
+              <path class="wall-thin" d="M220 130V74H380V130"/>
+              <path class="glass" d="M226 130V80H374V130"/>
+              <path class="hatch" d="M240 74V80M260 74V80M280 74V80M300 74V80M320 74V80M340 74V80M360 74V80"/>
+
+              <!-- Particiones de cristal (doble línea fina) con huecos de puerta -->
+              <path class="glass" d="M250 230V600M250 640V718M253 230V600M253 640V718"/>
+              <path class="glass" d="M347 230V600M347 640V718M350 230V600M350 640V718"/>
+              <path class="glass" d="M72 480H250M350 480H528M72 483H250M350 483H528"/>
+              <path class="glass" d="M72 230H250M350 230H528M72 233H250M350 233H528"/>
+              <!-- marcas de montantes -->
+              <path class="hatch" d="M250 280H253M250 330H253M250 430H253M250 530H253M250 680H253M347 280H350M347 330H350M347 430H350M347 530H350M347 680H350"/>
+
+              <!-- Recorrido de la cámara -->
+              <path class="route" d="M300 820V700L162 680L438 668L162 438L438 440L300 300V100"/>
+            </g>
+
+            <!-- Estás aquí -->
+            <g class="here-g" pointer-events="none" style="transform: translate(160px, 800px)">
+              <circle class="here-ring" r="6"/>
+              <circle class="here" r="3"/>
+            </g>
+          </svg>
+        </div>
+
+        <nav aria-label="Salas del estudio">
+          <ol class="plan__list">
+            <li><a href="#zona-fachada" data-goto="fachada">Fachada <span class="plan__note" data-note="Calle">Calle</span></a></li>
+            <li><a href="#zona-pasillo" data-goto="pasillo">Pasillo <span class="plan__note" data-note="Planta noble">Planta noble</span></a></li>
+            <li><a href="#zona-diseno-web" data-goto="diseno-web">Diseño Web <span class="plan__note" data-note="Sala I">Sala I</span></a></li>
+            <li><a href="#zona-product-design" data-goto="product-design">Product Design <span class="plan__note" data-note="Sala II">Sala II</span></a></li>
+            <li><a href="#zona-software-ai" data-goto="software-ai">Software &amp; AI <span class="plan__note" data-note="Sala III">Sala III</span></a></li>
+            <li><a href="#zona-arcade" data-goto="arcade">Arcade <span class="plan__note" data-note="Sala de juego">Sala de juego</span></a></li>
+            <li><a href="#zona-balcon" data-goto="balcon">Balcón <span class="plan__note" data-note="Madrid">Madrid</span></a></li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ================= Recorrido ================= -->
+  <main id="contenido" class="zones">
+
+    <section class="zone" id="zona-fachada" data-zone="fachada" aria-labelledby="h-fachada">
+      <div class="zone__stage">
+        <div class="layer">
+          <div class="fachada__copy">
+            <p class="fachada__firma" data-c="firma">Tu esencia, digital.</p>
+            <h1 class="fachada__h1" id="h-fachada" data-c="fachada.h1">Estudio de diseño web, producto y software en Madrid.</h1>
+            <p class="fachada__lead" data-c="fachada.entradilla">Somos Evimes. Creamos webs, productos digitales y software con IA para negocios que quieren que se les vea, y que les elijan.</p>
+            <a class="entra" href="#zona-pasillo"><span class="entra__linea" aria-hidden="true"></span><span data-c="fachada.entra">Entra</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="zone" id="zona-pasillo" data-zone="pasillo" aria-label="Pasillo">
+      <div class="zone__stage">
+        <h2 class="pasillo__lines display">
+          <span data-c="pasillo.0">Si no eres visible,</span>
+          <span data-c="pasillo.1">no existes.</span>
+        </h2>
+      </div>
+    </section>
+
+    <section class="zone" id="zona-diseno-web" data-zone="diseno-web" aria-labelledby="h-diseno-web">
+      <div class="zone__stage">
+        <h2 class="sr-only" id="h-diseno-web" data-c="disenoWeb.rotulo">Diseño Web</h2>
+        <!-- Panorama 360°: cartelas, rótulo y pantallas las coloca js/engine/pano.js -->
+      </div>
+    </section>
+
+    <section class="zone" id="zona-product-design" data-zone="product-design" aria-labelledby="h-product-design">
+      <div class="zone__stage">
+        <h2 class="sr-only" id="h-product-design" data-c="productDesign.rotulo">Product Design</h2>
+        <div class="layer layer--cartelas"></div>
+      </div>
+    </section>
+
+    <section class="zone" id="zona-software-ai" data-zone="software-ai" aria-labelledby="h-software-ai">
+      <div class="zone__stage">
+        <h2 class="sr-only" id="h-software-ai" data-c="softwareAI.rotulo">Software &amp; AI</h2>
+        <div class="layer layer--cartelas"></div>
+      </div>
+    </section>
+
+    <section class="zone" id="zona-arcade" data-zone="arcade" aria-label="Arcade">
+      <div class="zone__stage"></div>
+    </section>
+
+    <section class="zone" id="zona-balcon" data-zone="balcon" aria-labelledby="h-balcon">
+      <div class="zone__stage">
+        <div class="layer">
+          <h2 class="balcon__cta display" id="h-balcon" data-c="cta.titulo">¿Listo para empezar?</h2>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Librerías -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+  <!-- Three.js (salas 360°). Módulo: se ejecuta antes de DOMContentLoaded,
+       así main.js ya lo encuentra en window.THREE. -->
+  <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js';
+    window.THREE = THREE;
+  </script>
+
+  <!-- Datos y textos -->
+  <script src="js/config.js"></script>
+  <script src="js/brand.js"></script>
+  <script src="js/content.js"></script>
+  <script src="js/zones/manifest.js"></script>
+
+  <!-- Motor -->
+  <script src="js/engine/lenis.js"></script>
+  <script src="js/engine/stage.js"></script>
+  <script src="js/engine/zones.js"></script>
+  <script src="js/engine/overlay.js"></script>
+  <script src="js/engine/ajuste.js"></script>
+  <script src="js/engine/pano.js"></script>
+
+  <!-- Zonas -->
+  <script src="js/zones/room.js"></script>
+  <script src="js/zones/growth.js"></script>
+  <script src="js/zones/01-fachada.js"></script>
+  <script src="js/zones/02-pasillo.js"></script>
+  <script src="js/zones/03-diseno-web.js"></script>
+  <script src="js/zones/04-product-design.js"></script>
+  <script src="js/zones/05-software-ai.js"></script>
+  <script src="js/zones/06-arcade.js"></script>
+  <script src="js/zones/07-balcon.js"></script>
+
+  <script src="js/header.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+/* ==========================================================================
+   Base: documento, superficies del navegador, grano, cabecera, plano
+   ========================================================================== */
+
+/* — Documento — */
+html {
+  background: var(--navy);
+  color: var(--ink);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scrollbar-color: var(--graphite) var(--navy);
+  scrollbar-width: thin;
+}
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: clip; }
+
+body {
+  margin: 0;
+  background: var(--navy);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: var(--step-0);
+  line-height: var(--leading-text);
+  font-kerning: normal;
+  font-feature-settings: "kern", "liga";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+h1, h2, h3, .display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+  margin: 0;
+}
+p { margin: 0; text-wrap: pretty; }
+a { color: inherit; text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* — Superficies del navegador — */
+::selection { background: var(--stone); color: var(--navy); }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--graphite); border: 2px solid var(--navy); }
+::-webkit-scrollbar-thumb:hover { background: #3b3f48; }
+input, textarea { caret-color: var(--cyan); }
+
+:focus { outline: none; }
+:focus-visible {
+  outline: 1px solid var(--cyan);
+  outline-offset: 4px;
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  left: var(--gutter);
+  top: var(--space-3);
+  z-index: var(--z-dialog);
+  padding: var(--space-2) var(--space-3);
+  background: var(--stone);
+  color: var(--navy);
+  font-size: var(--step--1);
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+.skip-link:focus-visible { transform: none; }
+
+/* — Grano de película (una capa fija, igual en toda la web) — */
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: var(--z-grain);
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.6 -0.3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+  animation: grain-shift 0.9s steps(1) infinite;
+}
+@keyframes grain-shift {
+  0%   { transform: translate3d(0, 0, 0); }
+  20%  { transform: translate3d(-3%, 2%, 0); }
+  40%  { transform: translate3d(2%, -4%, 0); }
+  60%  { transform: translate3d(-4%, -1%, 0); }
+  80%  { transform: translate3d(3%, 3%, 0); }
+}
+
+/* — Cortina para saltos del plano — */
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-curtain);
+  background: var(--navy);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Cabecera fija
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: var(--z-header);
+  height: var(--header-h);
+  padding-inline: var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  pointer-events: none;
+}
+/* velo para legibilidad sobre fotogramas claros */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -60% 0;
+  background: linear-gradient(to bottom, rgb(8 11 20 / 0.72), rgb(8 11 20 / 0));
+  pointer-events: none;
+  z-index: -1;
+}
+.site-header > * { pointer-events: auto; }
+
+/* Marca: monograma EH vectorial (js/brand.js lo incrusta desde config).
+   Se reserva su caja para que no haya salto al cargar. */
+.brand {
+  --logo-h: clamp(1.25rem, 1.12rem + 0.35vw, 1.5rem);
+  display: inline-flex;
+  align-items: center;
+  height: 2.75rem;                         /* objetivo táctil */
+  width: calc(var(--logo-h) * 2.008);      /* proporción 1566 × 780 */
+  color: var(--stone);
+  text-decoration: none;
+}
+.brand .logo-svg { display: block; height: var(--logo-h); width: auto; }
+
+/* Menú común (Servicios · Proyectos · Planes · Contacto) en las páginas de texto; en móvil, solo los dos botones. */
+.doc-nav { display: inline-flex; align-items: center; min-height: 44px; padding: 0 10px; font-size: var(--step--1, 15px); color: var(--ink-2, rgb(233 227 216 / 0.78)); text-decoration: none; }
+.doc-nav:hover { color: var(--ink, #e9e3d8); }
+@media (max-width: 899px) { .doc-nav { display: none; } }
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.25rem, 0.1rem + 0.8vw, 1rem);
+}
+
+/* Botones base de UI */
+.ui-btn {
+  appearance: none;
+  background: none;
+  border: 0;
+  color: var(--stone);
+  font: 500 var(--step--1) / 1 var(--font-text);
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.75rem;
+  padding: 0 var(--space-3);
+  transition: transform var(--dur-fast) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.ui-btn:active { transform: scale(0.97); }
+.ui-btn svg { flex: none; }
+
+/* CTA único: placa rectangular, relleno de piedra que barre con clip-path */
+.btn-cta {
+  position: relative;
+  isolation: isolate;
+  padding-inline: var(--space-4);
+  margin-left: var(--space-2);
+  border: 1px solid var(--line-strong);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.btn-cta__fill {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--stone);
+  color: var(--navy);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path var(--dur-mid) var(--ease-out);
+}
+.btn-cta:hover .btn-cta__fill,
+.btn-cta:focus-visible .btn-cta__fill { clip-path: inset(0 0 0 0); }
+
+@media (max-width: 47.99rem) {
+  .btn-cta { padding-inline: var(--space-3); margin-left: var(--space-1); font-size: var(--step--2); }
+}
+
+/* ==========================================================================
+   Movimiento reducido
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .grain { animation: none; }
+}
+
+/* El atributo hidden manda siempre (ninguna regla display lo pisa). */
+[hidden] { display: none !important; }

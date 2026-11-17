@@ -1,0 +1,19 @@
+/* ==========================================================================
+   Panel gris (lo común). "Qué hacemos" (bento) está en css/bento.css;
+   Trabajo selecto + la oficina, en css/oficina.css; "Con quién trabajamos"
+   (la última sección del gris), en css/con-quien.css.
+   ========================================================================== */
+.panel {
+  --tinta-2: rgb(11 15 26 / 0.7);               /* secundario sobre el gris ≥ 6:1 */
+  padding-top: clamp(64px, 11vh, 120px);
+  padding-bottom: clamp(64px, 10vh, 120px);
+  /* El gris termina después de "Con quién" con el borde inferior redondeado:
+     debajo vuelve el fondo global (tubos + rayos) para Planes y Contacto. */
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+/* Foco visible sobre el gris: el cian no tiene contraste aquí. */
+.panel :focus-visible { outline: 2px solid var(--tinta-oscura); outline-offset: 3px; }
+
+.enlace--oscuro { color: var(--tinta-oscura); text-decoration-color: rgb(11 15 26 / 0.35); }
+.enlace--oscuro:hover { text-decoration-color: var(--tinta-oscura); }

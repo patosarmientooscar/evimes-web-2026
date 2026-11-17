@@ -1,0 +1,24 @@
+/* Fuentes alojadas en la propia web (sin llamadas a Google Fonts).
+   Subconjunto latino (incluye ñ, tildes, €, comillas y guiones). Variables. */
+@font-face {
+  font-family: "Libre Baskerville";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../assets/fonts/libre-baskerville-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Schibsted Grotesk";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("../assets/fonts/schibsted-grotesk-latin.woff2") format("woff2");
+}
+/* Titulares de la home (opción B del prototipo). Variable: opsz 9–144, wght 200–800. */
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("../assets/fonts/fraunces-latin.woff2") format("woff2");
+}

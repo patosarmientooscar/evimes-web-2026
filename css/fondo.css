@@ -1,0 +1,54 @@
+/* ==========================================================================
+   Fondo global de la home: rayos (2D) + onda de cromo (WebGL) + grano.
+   Capas fijas detrás de todo. Alto = 100lvh: la barra del navegador móvil
+   no obliga a redimensionar los canvas.
+   ========================================================================== */
+.fondo {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 100vh;
+  height: 100lvh;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--navy);
+  contain: strict;
+}
+.fondo > * {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.fondo__rayos { opacity: 0.9; }
+
+/* Bandas en vivo: aparecen cuando Three.js está listo (opacidad desde JS). */
+.fondo__onda { opacity: 0; }
+
+/* Póster / versión fija: fotograma opaco del propio render (rayos + bandas,
+   sin luces). En cine tapa los canvas hasta el primer gesto y se funde cuando
+   entra la onda en vivo; en la versión fija se queda. Centrado: con la altura
+   como lado limitante, coincide con la cámara (fov vertical fijo). */
+.fondo__fija img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+}
+.onda-viva .fondo__fija { display: none; }
+.fondo-fijo .fondo__onda,
+.fondo-fijo .fondo__rayos { display: none; }
+
+/* Grano de película: fijo (sin animación), muy sutil y por debajo del texto.
+   Tesela de ruido pintada una vez (assets/onda/grano.png, puntos blancos y
+   negros con alfa) y fusión normal: un mix-blend-mode o un feTurbulence a
+   pantalla completa costaban >1 s de TBT en Lighthouse móvil. */
+.grano {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.2;
+  background: url("../assets/onda/grano.png") 0 0 / 200px 200px repeat;
+}

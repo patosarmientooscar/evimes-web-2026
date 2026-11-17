@@ -1,0 +1,17 @@
+# Capturas temporales de Playwright y QA
+.playwright-mcp/
+test-results/
+playwright-report/
+
+# Dependencias, entorno y registros
+node_modules/
+.env
+.env.*
+*.log
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Copia local de la historia antes de limpiarla (lleva datos privados: nunca se sube)
+_respaldo/

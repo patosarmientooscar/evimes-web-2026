@@ -1,0 +1,487 @@
+/* ==========================================================================
+   Zonas: canvas de escena, pistas pinned, capas HTML (cartelas, pantallas)
+   ========================================================================== */
+
+/* Un único canvas fijo para toda la película */
+.scene {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;          /* no se redimensiona al ocultarse la barra en móvil */
+  z-index: var(--z-canvas);
+  display: block;
+  pointer-events: none;
+  background: var(--navy);
+}
+
+.zones { position: relative; z-index: var(--z-stage); }
+
+.zone { position: relative; }
+
+/* Modo cine: cada pista empieza justo donde acaba el pin de la anterior,
+   así el progreso de las zonas es continuo y no hay "deslizamiento" entre salas. */
+.is-cine .zone + .zone { margin-top: -100vh; }
+
+.zone__stage {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+.is-cine .zone__stage { visibility: hidden; }
+.is-cine .zone.is-active .zone__stage { visibility: visible; }
+
+/* Contenedor de capas con márgenes de página */
+.layer {
+  position: absolute;
+  inset: var(--header-h) var(--gutter) var(--gutter);
+}
+
+/* ——— Fachada ——— */
+.fachada__copy {
+  position: absolute;
+  left: 0;
+  bottom: clamp(1rem, 4vh, 3rem);
+  max-width: min(100%, 60rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.fachada__firma {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--step-0);
+  line-height: 1.3;
+  color: var(--oak);
+  margin-bottom: var(--space-4);
+}
+.fachada__h1 {
+  font-size: var(--step-4);
+  max-width: 19ch; /* tres líneas de 1280 a 1920 */
+}
+.fachada__lead {
+  margin-top: var(--space-5);
+  font-size: var(--step-1);
+  line-height: var(--leading-snug);
+  color: var(--ink);
+  max-width: 36ch;
+}
+
+/* "Entra": una línea fina que respira, nada de flechas que botan */
+.entra {
+  margin-top: var(--space-6);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 2.75rem;
+  color: var(--stone);
+  font: 500 var(--step--1) / 1 var(--font-text);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+.entra__linea {
+  width: 1px;
+  height: 2.25rem;
+  background: var(--stone);
+  transform-origin: 50% 0;
+  animation: entra-respira 2.8s var(--ease-in-out) infinite;
+}
+.entra:hover .entra__linea, .entra:focus-visible .entra__linea { animation-duration: 1.4s; }
+@keyframes entra-respira {
+  0%   { transform: scaleY(0.45); opacity: 0.5; }
+  55%  { transform: scaleY(1);    opacity: 1; }
+  100% { transform: scaleY(0.45); opacity: 0.5; }
+}
+
+/* Móvil vertical: el bloque vive en el tercio inferior oscuro y deja ver
+   la ventana encendida y las letras, que son el foco. */
+@media (max-width: 47.99rem) and (orientation: portrait) {
+  .fachada__copy { bottom: var(--space-3); }
+  .fachada__firma { font-size: var(--step--1); margin-bottom: var(--space-2); }
+  .fachada__h1 { font-size: clamp(1.75rem, 1.1rem + 3.2vw, 2.25rem); line-height: 1.06; max-width: 14ch; }
+  .fachada__lead { margin-top: var(--space-3); font-size: var(--step-0); line-height: 1.42; }
+  .entra { margin-top: var(--space-2); }
+}
+
+/* Horizontal bajo (móvil girado): todo cabe bajo la cabecera. */
+@media (max-height: 34rem) and (orientation: landscape) {
+  .fachada__copy { bottom: var(--space-3); max-width: min(100%, 34rem); }
+  .fachada__firma { font-size: var(--step--1); margin-bottom: var(--space-1); }
+  .fachada__h1 { font-size: clamp(1.5rem, 1rem + 2.4vw, 2rem); line-height: 1.05; max-width: 26ch; }
+  .fachada__lead { margin-top: var(--space-2); font-size: 0.9375rem; line-height: 1.4; max-width: 46ch; }
+  .entra { margin-top: 0; }
+}
+
+/* Cámara de la fachada: UN contenedor con la foto y todo lo que va pegado a
+   ella. Sin JS es la foto a pantalla completa (cover); con JS mide lo mismo
+   que la foto y la cámara lo mueve con translate + scale. */
+.fachada-cam {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;
+  z-index: var(--z-canvas);
+  pointer-events: none;
+  transform-origin: 0 0;
+}
+.fachada-cam .poster { position: absolute; inset: 0; display: block; }
+.fachada-cam .poster img,
+.fachada__hd { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block; }
+.fachada__hd { opacity: 0; }
+
+/* Luz cálida que sale por la ventana abierta y toca la piedra. */
+.fachada__derrame {
+  position: absolute;
+  opacity: 0;
+  mix-blend-mode: screen;
+  background: radial-gradient(closest-side, rgb(255 190 120 / 0.42) 0%, rgb(255 170 100 / 0.16) 50%, rgb(255 160 90 / 0) 100%);
+}
+
+/* Vano: lo que hay detrás de las hojas (recortado a su polígono). */
+.vano { position: absolute; inset: 0; opacity: 0; }
+.vano__interior { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+.vano__interior img,
+.vano__interior canvas { display: block; max-width: none; }   /* tamaño propio: la cámara lo escala */
+.vano__interior--blur { opacity: 0; }
+.vano__luz { position: absolute; inset: 0; opacity: 0; mix-blend-mode: screen; background: rgb(255 176 104 / 0.3); }
+
+/* Hojas de la ventana francesa: recortes de la foto que giran en 3D sobre su bisagra. */
+.hueco { position: absolute; opacity: 0; }
+.hoja { position: absolute; transform-style: preserve-3d; }
+.hoja__cara { position: absolute; inset: 0; }
+.hoja__cara canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hoja__cara .hoja__vidrio { opacity: 0; }
+.hoja__sombra { position: absolute; inset: 0; opacity: 0; background: var(--navy); }
+/* Reflejo del cielo navy en el cristal: sutil, crece al girar. */
+.hoja__reflejo {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  mix-blend-mode: screen;
+  background: linear-gradient(166deg, rgb(118 146 196 / 0.6) 0%, rgb(64 88 140 / 0.28) 42%, rgb(28 40 72 / 0) 78%);
+}
+/* Grosor del bastidor en el lado libre. */
+.hoja__canto { position: absolute; top: 0; height: 100%; background: linear-gradient(to bottom, #b7b0a4, #847e74); }
+.hoja--izq .hoja__canto { left: 100%; transform-origin: 0 50%; transform: rotateY(90deg); }
+.hoja--der .hoja__canto { right: 100%; transform-origin: 100% 50%; transform: rotateY(-90deg); }
+/* Barandilla: delante de las hojas, quieta. */
+.baranda { position: absolute; opacity: 0; display: block; }
+
+/* Letras corpóreas retroiluminadas. Tamaño intrínseco = viewBox del wordmark
+   (1442 × 261); matrix3d (estática) las lleva a sus 4 esquinas en la foto. */
+.letras {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1442px;
+  height: 261px;
+  transform-origin: 0 0;
+  pointer-events: none;
+  opacity: 0;
+}
+.letras svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+/* Capa trasera: la luz que las letras echan sobre la piedra. */
+.letras--halo { mix-blend-mode: screen; }
+.letras__luz { position: relative; width: 100%; height: 100%; opacity: 0; }
+/* La luz ya viene pintada en un canvas (01-fachada.js): sin filtros en vivo. */
+.letras__luz canvas { position: absolute; display: block; }
+/* Capa delantera: la letra, casi navy, con un canto claro finísimo. */
+.letras--cara svg {
+  fill: #0b1019;
+  stroke: rgb(196 236 246 / 0.6);
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+  paint-order: stroke fill;
+}
+
+/* ?ajustar=letras · ?ajustar=ventana */
+.ajuste__marco { position: fixed; inset: 0; width: 100%; height: 100%; z-index: var(--z-dialog); pointer-events: none; }
+.ajuste__marco polygon { fill: rgb(0 229 255 / 0.06); stroke: var(--cyan); stroke-width: 1; }
+.ajuste__marco polyline { fill: none; stroke: var(--cyan); stroke-width: 1; stroke-dasharray: 4 3; }
+.ajuste__punto {
+  position: fixed;
+  top: -14px;
+  left: -14px;
+  width: 28px;
+  height: 28px;
+  z-index: var(--z-dialog);
+  border: 1px solid var(--cyan);
+  border-radius: 50%;
+  background: rgb(8 11 20 / 0.5);
+  cursor: grab;
+  touch-action: none;
+}
+.ajuste__punto:active { cursor: grabbing; }
+.ajuste__panel {
+  position: fixed;
+  right: var(--gutter);
+  bottom: var(--gutter);
+  z-index: var(--z-dialog);
+  max-width: min(32rem, calc(100% - 2 * var(--gutter)));
+  padding: var(--space-4);
+  background: var(--navy-raised);
+  color: var(--ink);
+  font-size: var(--step--1);
+}
+.ajuste__titulo { font-weight: 600; margin-bottom: var(--space-2); }
+.ajuste__json { white-space: pre-wrap; word-break: break-all; font: 12px/1.5 ui-monospace, monospace; color: var(--ink-muted); margin: 0 0 var(--space-2); user-select: all; }
+.ajuste__estado { color: var(--ink-faint); margin-bottom: var(--space-3); }
+.ajuste__acciones { display: flex; gap: var(--space-3); }
+.ajuste__acciones button { appearance: none; background: none; border: 1px solid var(--line-strong); color: var(--stone); font: inherit; padding: var(--space-2) var(--space-3); cursor: pointer; }
+
+/* ——— Pasillo ——— */
+.pasillo__lines {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: max-content;
+  max-width: calc(100% - 2 * var(--gutter));
+  display: grid;
+  text-align: center;
+  font-size: var(--step-4);
+  gap: 0.1em;
+}
+.pasillo__lines span { display: block; }
+.pasillo__lines span:first-child { color: var(--ink-muted); }
+
+/* ——— Balcón ——— */
+.balcon__cta {
+  position: absolute;
+  left: 0;
+  bottom: clamp(1rem, 6vh, 4rem);
+  font-size: var(--step-4);
+  max-width: 14ch;
+}
+
+/* ——— Cartela estilo museo ———
+   Ancla (punto) → filete finísimo → texto pequeño. */
+.cartela {
+  --len: clamp(2.5rem, 5vw, 4.5rem);
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  pointer-events: none;
+  opacity: 0;
+}
+.cartela[data-side="left"] { flex-direction: row-reverse; transform: translateX(-100%); text-align: right; }
+.cartela__anchor {
+  flex: none;
+  width: 5px; height: 5px;
+  margin-top: calc(0.55em - 2px);
+  border: 1px solid var(--stone);
+  border-radius: 50%;
+  translate: -50% 0;
+}
+.cartela[data-side="left"] .cartela__anchor { translate: 50% 0; }
+.cartela__line {
+  flex: none;
+  width: var(--len);
+  height: 1px;
+  margin-top: 0.55em;
+  background: var(--line-strong);
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+.cartela[data-side="left"] .cartela__line { transform-origin: right center; }
+.cartela__body {
+  display: grid;
+  gap: 0.35em;
+  max-width: 17rem;
+  clip-path: inset(0 0 100% 0);
+}
+.cartela__obj {
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+}
+.cartela__text {
+  font-size: var(--step--1);
+  line-height: 1.45;
+  color: var(--ink-muted);
+}
+.cartela__tech {
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 47.99rem) {
+  .cartela { left: var(--x-m, var(--x, 50%)); top: var(--y-m, var(--y, 50%)); --len: 2rem; }
+  .cartela__body { max-width: 12.5rem; }
+}
+
+/* ——— Scrim local (detrás de cada bloque de texto) ———
+   El alfa máximo (55 %) va en el degradado; la intensidad real es opacity. */
+.scrim {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+.scrim--radial {
+  /* caída casi gaussiana: sin borde visible del óvalo */
+  background: radial-gradient(closest-side,
+    rgb(8 11 20 / 0.55) 0%, rgb(8 11 20 / 0.535) 35%, rgb(8 11 20 / 0.45) 55%,
+    rgb(8 11 20 / 0.3) 70%, rgb(8 11 20 / 0.165) 82%, rgb(8 11 20 / 0.055) 92%, rgb(8 11 20 / 0) 100%);
+}
+.scrim--left, .scrim--right {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--fade, 48px), #000 calc(100% - var(--fade, 48px)), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 var(--fade, 48px), #000 calc(100% - var(--fade, 48px)), transparent 100%);
+}
+.scrim--left  { background: linear-gradient(to right, rgb(8 11 20 / 0.55) 0%, rgb(8 11 20 / 0.55) var(--stop, 60%), rgb(8 11 20 / 0) 100%); }
+.scrim--right { background: linear-gradient(to left,  rgb(8 11 20 / 0.55) 0%, rgb(8 11 20 / 0.55) calc(100% - var(--stop, 40%)), rgb(8 11 20 / 0) 100%); }
+
+/* ——— Pantalla en perspectiva (screenQuad) ——— */
+/* Solo lo que necesita matrix3d. La posición (absolute en un escenario,
+   fixed en el body) la decide cada capa. */
+.quad {
+  transform-origin: 0 0;
+  backface-visibility: hidden;
+  will-change: transform;
+  opacity: 0;
+}
+
+/* ——— Salas 360° (js/engine/pano.js) ——— */
+.layer-sala { position: absolute; inset: 0; pointer-events: none; }
+.cartela--anclada { left: 0; top: 0; }
+/* La cartela principal no señala un objeto: va bajo el rótulo, sin ancla ni filete. */
+.cartela--principal .cartela__anchor,
+.cartela--principal .cartela__line { display: none; }
+.cartela--principal .cartela__body { max-width: 19rem; clip-path: none; }
+.cartela--principal .cartela__text { color: var(--ink); font-size: var(--step-0); }
+/* Cartela sobre papel o pared clara: tinta navy, como en un museo. */
+.cartela--clara .cartela__obj,
+.cartela--clara .cartela__text { color: var(--navy); }
+.cartela--clara .cartela__tech { color: rgb(8 11 20 / 0.72); }
+.cartela--clara .cartela__line { background: rgb(8 11 20 / 0.5); }
+.cartela--clara .cartela__anchor { border-color: var(--navy); }
+.scrim--radial.scrim--claro {
+  background: radial-gradient(closest-side,
+    rgb(240 236 228 / 0.55) 0%, rgb(240 236 228 / 0.535) 35%, rgb(240 236 228 / 0.45) 55%,
+    rgb(240 236 228 / 0.3) 70%, rgb(240 236 228 / 0.165) 82%, rgb(240 236 228 / 0.055) 92%, rgb(240 236 228 / 0) 100%);
+}
+
+/* Rótulo de vinilo blanco en el cristal (4 esquinas yaw/pitch). */
+.vinilo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1000px;
+  height: 240px;
+  display: grid;
+  place-items: center;
+  color: rgb(246 243 236 / 0.88);
+  font: 400 150px/1 var(--font-display);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+/* Pantallas: HTML real pegado a los monitores del panorama. */
+.pantalla { position: absolute; top: 0; left: 0; width: 1600px; height: 900px; overflow: hidden; background: #0e1118; }
+.web__captura { display: block; width: 100%; }
+.pantalla .web__captura { height: 100%; object-fit: cover; object-position: 50% 0; }
+.web__iframe { display: block; width: 100%; height: 100%; border: 0; pointer-events: none; }
+.web-pendiente {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 28px;
+  background: #0e1118;
+  color: var(--stone);
+  text-align: center;
+}
+.web-pendiente__url { font: 400 120px/1 var(--font-display); letter-spacing: -0.02em; }
+.web-pendiente__nota { font: 400 30px/1.3 var(--font-text); color: var(--ink-muted); }
+
+/* La pantalla principal, ya a pantalla completa, con scroll interno. */
+.pagina { position: absolute; inset: 0; opacity: 0; visibility: hidden; overflow: hidden; background: #0e1118; }
+.pagina__contenido { will-change: transform; }
+.pagina .web-pendiente { height: 100vh; height: 100lvh; gap: var(--space-4); padding: var(--gutter); }
+.pagina .web-pendiente__url { font-size: var(--step-4); }
+.pagina .web-pendiente__nota { font-size: var(--step-0); }
+
+/* Luces de Madrid (growth.js): punto cian con su resplandor pintado. */
+.luz-madrid {
+  position: absolute;
+  left: -28px;
+  top: -28px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  opacity: 0;
+  background: radial-gradient(closest-side, rgb(200 252 255 / 0.95) 0, rgb(0 229 255 / 0.6) 16%, rgb(0 229 255 / 0.18) 44%, rgb(0 229 255 / 0) 100%);
+}
+
+/* Zonas aún sin escena */
+.zone__pendiente {
+  position: absolute;
+  left: var(--gutter);
+  bottom: var(--gutter);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ?ajustar=sala */
+.sala-ajuste { position: fixed; inset: 0; z-index: var(--z-dialog); pointer-events: none; }
+.sala-ajuste.is-on { pointer-events: auto; cursor: grab; }
+.sala-ajuste.is-on:active { cursor: grabbing; }
+.sala-ajuste .ajuste__panel { pointer-events: auto; }
+.sala-ajuste__mira { position: absolute; left: 50%; top: 50%; width: 22px; height: 22px; margin: -11px 0 0 -11px; border: 1px solid var(--cyan); border-radius: 50%; display: none; }
+.sala-ajuste.is-on .sala-ajuste__mira { display: block; }
+.sala-ajuste__marcas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.sala-ajuste__marcas path { stroke: var(--cyan); stroke-width: 1; fill: none; }
+.sala-ajuste__marcas text { fill: var(--cyan); font: 11px/1 var(--font-text); }
+
+/* Modo fijo: una imagen por parada y sus cartelas en lista. */
+.paradas { display: none; }
+.is-still .paradas { display: grid; gap: var(--space-7); padding: var(--space-5) var(--gutter) var(--space-8); }
+.is-still .sala__titulo { font-family: var(--font-display); font-size: var(--step-4); padding: calc(var(--header-h) + var(--space-5)) var(--gutter) 0; }
+.parada { margin: 0; display: grid; gap: var(--space-4); }
+.parada__img { display: block; width: 100%; height: auto; }
+.parada__lista { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); font-size: var(--step-0); }
+.parada__texto { max-width: 42ch; color: var(--ink); }
+.parada__tecnica { margin-top: var(--space-2); font-size: var(--step--2); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--ink-faint); }
+
+/* ==========================================================================
+   Modo "imágenes fijas" (movimiento reducido o conexión lenta)
+   ========================================================================== */
+.is-still .zone__stage {
+  visibility: visible;
+  height: auto;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+.is-still .cartela {
+  opacity: 1;
+}
+.is-still .cartela__line { transform: none; }
+.is-still .cartela__body { clip-path: none; }
+.is-still .quad { display: none; }
+
+/* En móvil, en modo fijo las cartelas pasan a lista en flujo */
+@media (max-width: 47.99rem) {
+  .is-still .zone__stage { display: flex; flex-direction: column; justify-content: flex-end; padding: var(--header-h) var(--gutter) var(--space-7); gap: var(--space-5); }
+  .is-still .layer { position: static; inset: auto; }
+  .is-still .layer--cartelas { display: grid; gap: var(--space-5); }
+  .is-still .cartela { position: static; transform: none; flex-direction: row; text-align: left; }
+  .is-still .fachada__copy, .is-still .pasillo__lines { position: static; transform: none; }
+}

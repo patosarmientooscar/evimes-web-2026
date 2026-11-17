@@ -1,0 +1,113 @@
+/* ==========================================================================
+   oficina.css — "Trabajo selecto" + la oficina (#oficina-slot), panel gris.
+   Portado del prototipo aprobado (Downloads/evimes-oficina/index.html):
+   .intro, .track (470vh), .stage sticky, .window (se abre desde una card del
+   gris: clip-path inset con esquinas de 30 px → pantalla completa, y al
+   final se vuelve a cerrar en card), .scrim, .cap, .btn, .hud y .psi (los
+   indicadores de PageSpeed junto a la card de Disco).
+   El track sale a sangre del panel; los márgenes del texto son los de la
+   página (--g). Los textos siguen al borde de la ventana (--ix, --ib): al
+   cerrarse en card, el texto y el botón de Disco se quedan dentro.
+   Escena: js/oficina/ · textos: js/data/oficina.js.
+   (La oficina 360 aparcada usa css/oficina-aparcada.css.)
+   ========================================================================== */
+.intro, .track {
+  --b-ink: #0b1020;
+  --b-navy: #070a13;
+  --b-stone: #ece7dd;
+  --b-cyan: #00e5ff;
+  font-family: var(--font-text);
+  font-size: 16px;
+  line-height: normal;
+}
+.intro h2, .intro p, .track h3, .track p { margin: 0; text-wrap: wrap; }
+
+.intro { padding: clamp(80px,14vh,160px) 0 clamp(28px,5vh,56px); color: var(--b-ink); }
+.intro .label { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: rgba(11,16,32,.62); } /* .55 = 3,9:1; .62 = 4,9:1 (AA) */
+.intro h2 { font-size: clamp(38px,5.6vw,84px); line-height: 1; margin-top: 18px; max-width: 16ch; }
+.intro p { margin-top: 22px; max-width: 46ch; font-size: clamp(15px,1.2vw,18px); line-height: 1.55; color: rgba(11,16,32,.66); }
+
+/* El track ocupa todo el ancho (sale del padding del panel). */
+.track { position: relative; height: 470vh; margin-inline: calc(-1 * var(--g)); }
+.stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+/* the office opens like one of the bento cards growing to fill the screen, and closes back into one */
+.window { position: absolute; inset: 0; background: var(--b-navy); will-change: clip-path;
+  clip-path: inset(var(--it,14vh) var(--ix,12vw) var(--ib,14vh) var(--ix,12vw) round var(--r,30px)); }
+.window canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.window::after { content: ""; position: absolute; inset: var(--it,14vh) var(--ix,12vw) var(--ib,14vh) var(--ix,12vw); pointer-events: none; border-radius: var(--r,30px);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,calc(.08*var(--edge,1))); }
+/* Mientras cargan Three.js y el panorama: la misma vista, desenfocada (v360 del panorama 4K). */
+.espera { position: absolute; inset: 0; transition: opacity .8s cubic-bezier(.2,.7,.2,1); }
+.espera img { width: 100%; height: 100%; max-width: none; object-fit: cover; display: block; filter: blur(12px); transform: scale(1.06); }
+.window.is-lista .espera { opacity: 0; }
+/* El velo sigue el borde de la ventana: al cerrarse en card, sigue detrás del texto. */
+.scrim { position: absolute; inset: var(--it,14vh) var(--ix,12vw) var(--ib,14vh) var(--ix,12vw); pointer-events: none; background: radial-gradient(120% 70% at 18% 100%,rgba(7,10,19,.82),rgba(7,10,19,0) 60%); opacity: var(--scrim,0); }
+/* AA: un segundo velo navy, más corto, justo detrás del texto (la mesa y el cuaderno son claros). */
+.scrim::before { content: ""; position: absolute; inset: 0; background: radial-gradient(95% 88% at 6% 100%,rgba(7,10,19,.86),rgba(7,10,19,.62) 45%,rgba(7,10,19,0) 86%); }
+.cap { position: absolute; left: calc(var(--ix,12vw) + var(--g)); bottom: calc(var(--ib,14vh) + clamp(36px,9vh,96px));
+  max-width: min(560px, calc(100vw - 2 * var(--ix,12vw) - 2 * var(--g))); color: var(--b-stone); pointer-events: none; opacity: 0; transform: translateY(24px); text-shadow: 0 1px 20px rgba(7,10,19,.55); }
+.cap .k { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: rgba(236,231,221,.94); }
+.cap h3 { margin-top: 12px; font-size: clamp(34px,4.4vw,64px); line-height: 1; }
+.cap .accent { color: var(--b-cyan); }
+.cap p { margin-top: 14px; font-size: clamp(14px,1.1vw,17px); line-height: 1.5; color: rgba(236,231,221,.86); }
+/* botón de cristal del prototipo */
+.cap .btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; padding: 13px 22px; border-radius: 999px; color: var(--b-stone); text-decoration: none; font-size: 15px; text-shadow: none;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); transition: background-color .3s; }
+.cap .btn i { font-style: normal; }
+.cap .btn:hover { background: rgba(255,255,255,.16); }
+.cap .btn:focus-visible { outline: 2px solid var(--b-stone); outline-offset: 3px; }
+.cap.is-on .btn { pointer-events: auto; }
+/* Con teclado, el enlace a Disco se ve al recibir el foco aunque el texto aún no haya entrado. */
+.cap:focus-within { opacity: 1 !important; transform: none !important; }
+.hud { position: absolute; right: calc(var(--ix,12vw) + var(--g)); bottom: calc(var(--ib,14vh) + clamp(36px,9vh,96px)); color: rgba(236,231,221,.94); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; opacity: 0; pointer-events: none;
+  text-shadow: 0 0 2px rgba(7,10,19,.9), 0 0 14px rgba(7,10,19,.9); }
+
+/* ---- PageSpeed: círculos de cristal navy con anillo cian → blanco y la píldora (colocados cada fotograma desde timeline.js) ---- */
+.psi { position: absolute; inset: 0; pointer-events: none; }
+.psi .g { --s: 110px; position: absolute; left: 0; top: 0; width: var(--s); height: var(--s); opacity: 0; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(var(--s) * .04);
+  background: radial-gradient(circle at 50% 30%, rgba(24,36,70,.78), rgba(7,10,19,.78)); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.10), inset 0 1px 0 rgba(255,255,255,.14), 0 20px 44px -20px rgba(0,0,0,.75), 0 0 46px -14px rgba(0,229,255,.45); will-change: transform, opacity; }
+.psi svg.ring { position: absolute; inset: 7%; width: 86%; height: 86%; transform: rotate(-90deg); }
+.psi .tr { fill: none; stroke: rgba(255,255,255,.10); stroke-width: 5; }
+.psi .ar { fill: none; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 263.9; stroke-dashoffset: 263.9; filter: drop-shadow(0 0 3px rgba(0,229,255,.75)); }
+.psi .g b { position: relative; font: 600 calc(var(--s) * .27)/1 var(--font-text); color: #ece7dd; font-variant-numeric: tabular-nums; letter-spacing: -.03em; }
+.psi .g span { position: relative; font: 500 max(9px, calc(var(--s) * .078))/1.15 var(--font-text); letter-spacing: .04em; color: rgba(236,231,221,.74); text-align: center; max-width: 72%; }
+.psi .pill { position: absolute; left: 0; top: 0; opacity: 0; display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px; white-space: nowrap; color: #ece7dd; font: 500 13px/1 var(--font-text);
+  background: rgba(7,10,19,.72); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), 0 0 30px -12px rgba(0,229,255,.5); }
+.psi .pill i { width: 8px; height: 8px; border-radius: 50%; background: var(--b-cyan); box-shadow: 0 0 10px var(--b-cyan); }
+.psi .pill b { font-weight: 600; }
+.psi .pill em { font-style: normal; color: rgba(236,231,221,.66); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; margin-left: 6px; }
+
+@media (max-width:820px) { .cap { bottom: calc(var(--ib,14vh) + 28px); } .hud { display: none; }
+  /* En vertical el texto ocupa todo el ancho, encima de la pantalla encendida: velo de abajo arriba. */
+  .scrim::before { background: linear-gradient(to top,rgba(7,10,19,.9),rgba(7,10,19,.72) 32%,rgba(7,10,19,0) 58%); } }
+
+/* ---------- Versión fija (movimiento reducido, ahorro de datos, sin WebGL) ----------
+   Sin track largo: la oficina en una card del gris (foto sacada del propio render)
+   con la web de Disco ya colocada encima del monitor, el texto y el enlace. */
+.track.is-fija { height: auto; margin-inline: 0; }
+.track.is-fija .stage { position: relative; height: auto; overflow: visible; }
+.track.is-fija .window { position: relative; inset: auto; clip-path: none; border-radius: 30px; overflow: hidden; }
+.track.is-fija .window::after { inset: 0; border-radius: 30px; }
+.track.is-fija :is(canvas, .espera, .hud, .cap[data-cap="1"]) { display: none; }
+.track.is-fija .cap[data-cap="2"] { left: var(--g); bottom: clamp(28px,6vh,64px); max-width: min(560px, calc(100% - 2 * var(--g))); opacity: 1; transform: none; }
+.track.is-fija .cap .btn { pointer-events: auto; }
+.track.is-fija .scrim { inset: 0; opacity: 1; }
+.fija { position: relative; aspect-ratio: var(--ar); container-type: inline-size; }
+/* indicadores quietos (posición en % de la imagen, tamaño en cqw: escalan con la card) */
+.psi--fija .g { --s: var(--fs); opacity: 1; transform: none; }
+.psi--fija .pill { opacity: 1; transform: translateX(-50%); }
+.fija__foto { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; display: block; }
+.fija--movil { display: none; }
+@media (max-width: 700px) { .fija--escritorio { display: none; } .fija--movil { display: block; }
+  /* en vertical el texto va debajo de la foto: encima taparía la fila de indicadores */
+  .track.is-fija .cap[data-cap="2"] { position: relative; left: auto; bottom: auto; max-width: none; padding: 28px var(--g) 36px; }
+  .track.is-fija .scrim { display: none; } }
+/* La web de Disco (primera captura de la tira) con el filo de cromo y la ráfaga de detrás. */
+.fweb { position: absolute; display: block; border-radius: 3.4% / 5.5%; background-repeat: no-repeat; background-position: 0 0; background-color: #0b1226;
+  box-shadow: 0 0 0 1px rgba(228,233,240,.55), inset 0 0 0 1px rgba(255,255,255,.12), 0 0 60px 6px rgba(43,77,255,.35), 0 0 120px 10px rgba(0,229,255,.18), 0 30px 60px -30px rgba(0,0,0,.7); }
+
+/* Enlace a proyectos.html bajo el titular de Trabajo selecto (sobre el gris). */
+.intro .intro__mas { margin-top: 26px; }
+.intro__mas .enlace { color: var(--b-ink); text-decoration-color: rgba(11,16,32,.35); }
+.intro__mas .enlace:focus-visible { outline: 2px solid var(--b-ink); outline-offset: 3px; }

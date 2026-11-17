@@ -1,0 +1,98 @@
+/* ==========================================================================
+   contacto.css — "¿Hacemos que se te vea?" con formulario (sobre el fondo global).
+   Campos grandes con línea inferior fina, etiqueta que flota (transform), foco
+   en cian (la línea se dibuja de izquierda a derecha: scaleX), errores en
+   línea, chips para "Soy…" y el plan. Solo transform y opacity animados.
+   JS: js/contacto/form.js
+   ========================================================================== */
+.contacto {
+  --f-line: rgb(233 227 216 / 0.26);
+  --f-err: #ff9b8a;                              /* sobre #080b14 ≈ 9:1 */
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 2vw, 32px);
+  row-gap: 56px;
+  align-items: start;
+}
+.contacto__cab { grid-column: 1 / span 6; position: sticky; top: clamp(96px, 14vh, 140px); }
+.contacto__form { grid-column: 7 / -1; }
+.contacto__intro { margin-top: 28px; max-width: 30ch; font-size: clamp(17px, 1.4vw, 21px); line-height: 1.5; color: var(--texto-2); }
+.contacto__directo { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 15px; color: var(--texto-2); }
+.contacto__directo a { text-decoration-color: rgb(233 227 216 / 0.3); }
+.contacto__directo a:hover { color: var(--stone); }
+
+.form { display: grid; gap: 6px; }
+.form__hp { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; left: -9999px; }
+
+/* ---- campo con etiqueta que flota ---- */
+.campo { position: relative; padding-top: 22px; }
+.campo__input {
+  display: block; width: 100%; padding: 14px 0 12px; border: 0; border-bottom: 1px solid var(--f-line); border-radius: 0;
+  background: transparent; color: var(--stone); font: 400 clamp(19px, 1.5vw, 22px)/1.3 var(--font-text); outline: none; resize: none;
+  -webkit-appearance: none; appearance: none;
+}
+textarea.campo__input { min-height: 132px; }
+.campo__label {
+  position: absolute; left: 0; top: 36px; color: rgb(233 227 216 / 0.72); font-size: clamp(19px, 1.5vw, 22px); line-height: 1.3; pointer-events: none;
+  transform-origin: 0 0; transition: transform .45s var(--ease), color .3s var(--ease);
+}
+.campo__opc { font-size: .75em; color: rgb(233 227 216 / 0.66); }
+.campo__input:focus + .campo__label,
+.campo__input:not(:placeholder-shown) + .campo__label { transform: translateY(-30px) scale(.62); }
+.campo__input:focus + .campo__label { color: var(--cyan); }
+.campo__linea { position: absolute; left: 0; right: 0; height: 2px; margin-top: -1.5px; background: var(--cyan); transform: scaleX(0); transform-origin: left; transition: transform .6s var(--ease); }
+.campo__input:focus ~ .campo__linea { transform: scaleX(1); }
+.campo__error { min-height: 22px; padding-top: 6px; font-size: 14px; line-height: 1.3; color: var(--f-err); opacity: 0; transform: translateY(-4px); transition: opacity .3s var(--ease), transform .3s var(--ease); }
+.campo__error:not(:empty) { opacity: 1; transform: none; }
+.is-mal .campo__input { border-bottom-color: var(--f-err); }
+.is-mal .campo__label { color: var(--f-err); }
+
+/* ---- chips ---- */
+.grupo { margin: 18px 0 8px; padding: 0; border: 0; min-width: 0; }
+.grupo__legend { padding: 0; margin-bottom: 14px; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: rgb(233 227 216 / 0.72); }
+.grupo__chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip { position: relative; cursor: pointer; }
+.chip input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.chip span {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; font-size: 15px; color: var(--stone);
+  border: 1px solid var(--f-line); background: rgb(255 255 255 / 0.02); transition: border-color .3s var(--ease), background-color .3s var(--ease), color .3s var(--ease);
+}
+.chip:hover span { border-color: rgb(233 227 216 / 0.5); }
+.chip input:checked + span { border-color: var(--cyan); background: rgb(0 229 255 / 0.1); color: #fff; }
+.chip input:focus-visible + span { outline: 2px solid var(--cyan); outline-offset: 3px; }
+
+/* ---- privacidad ---- */
+.casilla { display: grid; grid-template-columns: 22px 1fr; column-gap: 14px; align-items: start; margin-top: 18px; font-size: 15px; line-height: 1.5; color: var(--texto-2); }
+.casilla input { width: 22px; height: 22px; margin: 1px 0 0; accent-color: var(--cyan); cursor: pointer; }
+.casilla a { color: var(--stone); text-decoration-color: rgb(233 227 216 / 0.4); }
+.casilla a:hover { text-decoration-color: var(--cyan); }
+.casilla .campo__error { grid-column: 2; }
+
+.form__pie { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: 18px; }
+.form__nota { font-size: 14px; color: rgb(233 227 216 / 0.66); }
+.form__enviar { border: 0; cursor: pointer; font: inherit; }
+.form__enviar[aria-busy="true"] { opacity: .75; cursor: progress; }
+.form__estado { font-size: 16px; line-height: 1.5; color: var(--stone); }
+.form__estado:empty { display: none; }
+.form__estado { margin-top: 18px; padding: 16px 20px; border-radius: 18px; border: 1px solid var(--f-line); background: rgb(8 11 20 / 0.55); }
+.form__estado.is-error { border-color: rgb(255 155 138 / 0.5); }
+.form__estado a { color: var(--stone); text-decoration-color: var(--cyan); }
+.form__estado p + p { margin-top: 8px; }
+
+/* ---- enviado ---- */
+.form__ok { padding: clamp(32px, 5vw, 56px) 0; }
+.form__ok svg { width: 64px; height: 64px; display: block; }
+.form__ok .ok-anillo { transform-origin: 32px 32px; transform: scale(.6); opacity: 0; animation: ok-anillo .7s var(--ease) forwards; }
+.form__ok .ok-check { clip-path: inset(0 100% 0 0); animation: ok-check .6s var(--ease) .35s forwards; }
+.form__ok h3 { margin-top: 28px; font-size: clamp(34px, 3.6vw, 56px); line-height: 1; opacity: 0; transform: translateY(16px); animation: ok-sube .8s var(--ease) .5s forwards; }
+@keyframes ok-anillo { to { transform: none; opacity: 1; } }
+@keyframes ok-check { to { clip-path: inset(0 0 0 0); } }
+@keyframes ok-sube { to { opacity: 1; transform: none; } }
+
+@media (max-width: 899px) {
+  .contacto__cab, .contacto__form { grid-column: 1 / -1; }
+  .contacto__cab { position: static; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contacto *, .contacto *::before, .contacto *::after { transition: none !important; animation-duration: 1ms !important; animation-delay: 0s !important; }
+}

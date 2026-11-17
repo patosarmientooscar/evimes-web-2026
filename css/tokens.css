@@ -1,0 +1,83 @@
+/* ==========================================================================
+   Evimes — El Estudio · Design tokens
+   ========================================================================== */
+
+:root {
+  /* — Color — */
+  --navy: #080b14;          /* fondo base de toda la web */
+  --navy-raised: #0e1220;   /* superficies sobre navy (plano, diálogos) */
+  --cyan: #00e5ff;          /* SOLO acentos mínimos: letras fachada, luces, foco */
+  --stone: #e9e3d8;         /* blanco roto de las paredes */
+  --oak: #b8875a;
+  --camel: #b48a5e;
+  --graphite: #2b2e35;
+  --gris: #e6e4df;           /* panel claro de la home */
+  --tinta-oscura: #0b0f1a;   /* texto sobre el panel claro */
+
+  /* Derivados de piedra sobre navy (todos ≥ AA para texto) */
+  --ink: var(--stone);                         /* texto principal  ~16:1 */
+  --ink-muted: rgb(233 227 216 / 0.72);        /* texto secundario ~10:1 */
+  --ink-faint: rgb(233 227 216 / 0.56);        /* cartelas técnicas ~6.8:1 */
+  --line: rgb(233 227 216 / 0.22);             /* líneas finas */
+  --line-strong: rgb(233 227 216 / 0.5);
+
+  /* — Tipografía —
+     Titulares: Libre Baskerville.
+     Texto y cartelas: Schibsted Grotesk (grotesca de prensa, firme a 11–13px,
+     cifras tabulares; elegida frente a Familjen Grotesk, más caprichosa
+     y débil en tamaños de cartela). */
+  --font-display: "Libre Baskerville", "Baskerville", "Iowan Old Style", Georgia, serif;
+  /* Titulares de la home: UNA sola variable para cambiar de familia.
+     B (elegida) = Fraunces 620 · A = "Libre Baskerville" 700 / -0.015em · C = "Schibsted Grotesk" 760 / -0.035em */
+  --display: "Fraunces", "Libre Baskerville", Georgia, serif;
+  --display-w: 620;
+  --display-track: -0.022em;
+  --display-opsz: 144;
+
+  --font-text: "Schibsted Grotesk", "Helvetica Neue", system-ui, sans-serif;
+
+  /* Escala fluida 360px → 1600px (ratio ~1.25 móvil, ~1.333 escritorio) */
+  --step--2: clamp(0.6875rem, 0.67rem + 0.08vw, 0.75rem);   /* 11 → 12  micro / cartela técnica */
+  --step--1: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);   /* 13 → 14  cartela, UI */
+  --step-0:  clamp(1rem, 0.96rem + 0.18vw, 1.125rem);       /* 16 → 18  texto */
+  --step-1:  clamp(1.1875rem, 1.1rem + 0.4vw, 1.5rem);      /* 19 → 24  entradilla */
+  --step-2:  clamp(1.5rem, 1.3rem + 0.9vw, 2.25rem);        /* 24 → 36 */
+  --step-3:  clamp(1.875rem, 1.5rem + 1.7vw, 3.375rem);     /* 30 → 54 */
+  --step-4:  clamp(2.375rem, 1.75rem + 2.8vw, 5rem);        /* 38 → 80  display */
+
+  --leading-tight: 1.08;
+  --leading-snug: 1.3;
+  --leading-text: 1.55;
+  --tracking-display: -0.022em;
+  --tracking-caps: 0.14em;
+
+  /* — Espacio — */
+  --gutter: clamp(1rem, 0.6rem + 1.8vw, 2.5rem);
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 5rem;
+  --header-h: clamp(3.75rem, 3.3rem + 1.2vw, 4.75rem);
+
+  /* — Movimiento — */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);        /* expo out */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur-mid: 420ms;
+  --dur-slow: 900ms;
+
+  /* — Capas (únicas permitidas) — */
+  --z-canvas: 0;
+  --z-stage: 1;
+  --z-header: 20;
+  --z-curtain: 30;
+  --z-dialog: 40;
+  --z-grain: 50;
+
+  /* — Grano de película — */
+  --grain-opacity: 0.06;
+}

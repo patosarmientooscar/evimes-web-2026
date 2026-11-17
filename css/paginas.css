@@ -1,0 +1,57 @@
+/* Páginas planas: proyectos.html y planes.html (mismo material que las cards). */
+.doc--ancha { grid-template-columns: var(--gutter) minmax(0, 1fr) var(--gutter); }
+.doc--ancha > * { max-width: 82rem; width: 100%; justify-self: center; }
+
+.rejilla { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); gap: clamp(1rem, 2vw, 1.75rem); align-items: start; }
+.rejilla--planes { align-items: start; }
+.doc .rejilla li::before { display: none; }
+.doc .rejilla > li { padding: 0; margin: 0; }
+.ficha {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+  padding: 0.75rem 0.75rem 1.25rem;
+  border-radius: 14px;
+  background: #f4f1ea;
+  color: #121722;
+  box-shadow: 0 30px 60px -22px rgb(4 6 12 / 0.55), 0 10px 22px -10px rgb(4 6 12 / 0.35);
+}
+.doc .ficha p, .doc .ficha li { color: #4a505c; max-width: none; }
+.ficha > :not(figure):not(.ficha__vacia) { margin-inline: 0.5rem; }
+.ficha--plan { padding: 1.75rem; }
+.ficha--plan > * { margin-inline: 0 !important; }
+.ficha__captura { margin: 0 0 0.5rem; border-radius: 8px; overflow: hidden; background: #0b0b0b; aspect-ratio: 16 / 10; }
+.ficha__captura img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
+.ficha__vacia {
+  aspect-ratio: 16 / 10;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  font: 400 1.125rem/1 var(--font-display);
+  color: rgb(18 23 34 / 0.74);
+  background: #d8d4ca;
+}
+.ficha--pronto { background: #e6e2d9; }
+.doc .ficha__cliente { font: 600 var(--step-1) / 1.2 var(--font-text); color: #121722; margin: 0.25rem 0 0; max-width: none; }
+.ficha__precio { font: 400 var(--step-3) / 1 var(--font-display); color: #121722 !important; }
+.doc .ficha__medida { font-size: var(--step--1); }
+.doc--ancha .doc__updated { font-variant-numeric: normal; }
+.ficha__sello { justify-self: start; font-size: 0.75rem; font-weight: 600; padding: 6px 10px; border-radius: 999px; background: #121722; color: #f4f1ea !important; }
+.doc .ficha ul { margin: 0.5rem 0 1rem; border-top: 1px solid rgb(18 23 34 / 0.12); }
+.doc .ficha ul li { padding: 0.6rem 0; border-bottom: 1px solid rgb(18 23 34 / 0.12); font-size: var(--step--1); }
+.doc .ficha ul li + li { margin-top: 0; }
+.doc .ficha__ver {
+  justify-self: start;
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 1.25rem;
+  border-radius: 999px;
+  background: #121722;
+  color: #f4f1ea;
+  text-decoration: none;
+  font-size: var(--step--1);
+  font-weight: 500;
+}
+.doc .ficha__ver:hover { background: #222a3a; }
