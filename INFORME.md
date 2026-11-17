@@ -4,8 +4,8 @@ Los 4 bloques están hechos y no se ha revertido ninguno. Las decisiones que tom
 
 ## Para abrir en el móvil
 
-- **Web publicada (GitHub Pages):** <!--PAGES-->
-- **Repositorio público:** <!--REPO-->
+- **Web publicada (GitHub Pages):** https://patosarmientooscar.github.io/evimes-web-2026/
+- **Repositorio público:** https://github.com/patosarmientooscar/evimes-web-2026 (la copia completa con la historia sigue en el privado https://github.com/patosarmientooscar/evimes-web)
 
 ## Lo que tienes que hacer tú
 
@@ -87,7 +87,7 @@ Nada se ha revertido. Lo que hay que saber:
   - el brillo cian de los indicadores, del diseño de la oficina;
   - la etiqueta "Servicios" sobre el H1.
 - **Oficina:** 0.2 / 0.45 / 0.6 / 0.75 a 1440×900 y 390×844. En escritorio el monitor, la mesa y EVIMES se ven siempre enteros. En móvil, ver el punto 6 de arriba.
-<!--PAGES-QA-->
+- **GitHub Pages (publicado el 17-11 a las 16:11), abierto con Playwright a 390×844:** las 5 páginas responden 200; todo el CSS cargado; Fraunces y Schibsted cargadas; los tubos en vivo (Three.js cargado); la oficina carga su panorama (oficina-4096.webp en móvil). **0 respuestas 404, 0 imágenes rotas y 0 errores en consola.** No hubo que arreglar rutas: ya eran todas relativas.
 
 Capturas (en `.playwright-mcp/`, que no se sube al repositorio):
 
